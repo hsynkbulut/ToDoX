@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1051802976710",
+    "project_id": "example-project-a9df4",
+    "storage_bucket": "example-project-a9df4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051802976710:android:4c82341427e9c8ab74f2c7",
+        "android_client_info": {
+          "package_name": "com.example.anytime_todo_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRVlm6aeofkgkc36KEylTQjEwC6O_4dCc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
