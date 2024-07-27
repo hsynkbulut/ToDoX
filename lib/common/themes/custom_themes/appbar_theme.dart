@@ -29,11 +29,11 @@ class TAppBarTheme {
     surfaceTintColor: AppColors.transparent,
     iconTheme: IconThemeData(color: AppColors.black, size: TSizes.iconMd),
     actionsIconTheme:
-        IconThemeData(color: AppColors.whiteColor, size: TSizes.iconMd),
+        IconThemeData(color: AppColors.white, size: TSizes.iconMd),
     titleTextStyle: TextStyle(
       fontSize: 18.0,
       fontWeight: FontWeight.w600,
-      color: AppColors.whiteColor,
+      color: AppColors.white,
     ),
   );
 }

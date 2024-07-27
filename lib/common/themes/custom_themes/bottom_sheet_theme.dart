@@ -6,8 +6,8 @@ class TBottomSheetTheme {
 
   static BottomSheetThemeData lightBottomSheetTheme = BottomSheetThemeData(
     showDragHandle: true,
-    backgroundColor: AppColors.whiteColor,
-    modalBackgroundColor: AppColors.whiteColor,
+    backgroundColor: AppColors.white,
+    modalBackgroundColor: AppColors.white,
     constraints: const BoxConstraints(minWidth: double.infinity),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
   );

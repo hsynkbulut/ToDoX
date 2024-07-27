@@ -18,6 +18,8 @@ class UserModel {
     required this.creationDate,
   });
 
+  String get fullName => '$firstName $lastName';
+
   // JSON'dan UserModel nesnesi oluşturmak için factory constructor
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
