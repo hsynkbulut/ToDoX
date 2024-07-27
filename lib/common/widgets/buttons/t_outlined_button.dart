@@ -4,9 +4,9 @@ import 'package:anytime_todo_app/common/constants/app_colors.dart';
 class TOutlinedButton extends StatelessWidget {
   const TOutlinedButton({
     super.key,
-    this.foregroundColor = AppColors.primaryColor,
-    this.borderSideColor = AppColors.primaryColor,
-    this.textColor = AppColors.primaryColor,
+    this.foregroundColor = AppColors.primary,
+    this.borderSideColor = AppColors.primary,
+    this.textColor = AppColors.primary,
     required this.text,
     required this.onPressed,
   });

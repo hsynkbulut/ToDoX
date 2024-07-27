@@ -7,16 +7,16 @@ class TChipTheme {
   static ChipThemeData lightChipTheme = ChipThemeData(
     disabledColor: AppColors.grey.withOpacity(0.4),
     labelStyle: const TextStyle(color: AppColors.black),
-    selectedColor: AppColors.primaryColor, //Colors.blue,
+    selectedColor: AppColors.primary, //Colors.blue,
     padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12),
-    checkmarkColor: AppColors.whiteColor,
+    checkmarkColor: AppColors.white,
   );
 
   static ChipThemeData darkChipTheme = const ChipThemeData(
     disabledColor: AppColors.grey,
-    labelStyle: TextStyle(color: AppColors.whiteColor),
-    selectedColor: AppColors.primaryColor, //Colors.blue,
+    labelStyle: TextStyle(color: AppColors.white),
+    selectedColor: AppColors.primary, //Colors.blue,
     padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12),
-    checkmarkColor: AppColors.whiteColor,
+    checkmarkColor: AppColors.white,
   );
 }

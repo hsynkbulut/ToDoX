@@ -4,8 +4,8 @@ import 'package:anytime_todo_app/common/constants/app_colors.dart';
 class TElevatedButton extends StatelessWidget {
   const TElevatedButton({
     super.key,
-    this.backgroundColor = AppColors.primaryColor,
-    this.textColor = AppColors.whiteColor,
+    this.backgroundColor = AppColors.primary,
+    this.textColor = AppColors.white,
     required this.text,
     required this.onPressed,
   });

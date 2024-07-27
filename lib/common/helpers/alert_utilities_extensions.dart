@@ -42,7 +42,7 @@ extension AlertUtilitiesExtensions on BuildContext {
               child: TextButton(
                 child: const Text(
                   'Evet',
-                  style: TextStyle(color: AppColors.whiteColor),
+                  style: TextStyle(color: AppColors.white),
                 ),
                 onPressed: () async {
                   Navigator.of(context).pop(); //Başka sayfaya yönlendir

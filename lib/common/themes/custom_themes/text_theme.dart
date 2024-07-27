@@ -85,7 +85,7 @@ class TTextTheme {
     displayLarge: const TextStyle(
         fontFamily: 'SignikaNegative',
         fontSize: 40,
-        color: AppColors.primaryTextTextColor,
+        color: AppColors.textPrimary,
         fontWeight: FontWeight.w500,
         height: 1.6),
     displayMedium: const TextStyle(
@@ -108,68 +108,68 @@ class TTextTheme {
       fontFamily: 'SignikaNegative',
       fontSize: 32.0,
       fontWeight: FontWeight.bold,
-      color: AppColors.whiteColor,
+      color: AppColors.white,
     ),
     headlineMedium: const TextStyle().copyWith(
       fontFamily: 'SignikaNegative',
       fontSize: 24.0,
       fontWeight: FontWeight.w600,
-      color: AppColors.whiteColor,
+      color: AppColors.white,
     ),
     headlineSmall: const TextStyle().copyWith(
       fontFamily: 'SignikaNegative',
       fontSize: 18.0,
       fontWeight: FontWeight.w600,
-      color: AppColors.whiteColor,
+      color: AppColors.white,
     ),
     titleLarge: const TextStyle().copyWith(
       fontFamily: 'SignikaNegative',
       fontSize: 16.0,
       fontWeight: FontWeight.w600,
-      color: AppColors.whiteColor,
+      color: AppColors.white,
     ), // ElevatedButton text rengi
     titleMedium: const TextStyle().copyWith(
       fontFamily: 'SignikaNegative',
       fontSize: 16.0,
       fontWeight: FontWeight.w500,
-      color: AppColors.whiteColor,
+      color: AppColors.white,
     ),
     titleSmall: const TextStyle().copyWith(
       fontFamily: 'SignikaNegative',
       fontSize: 16.0,
       fontWeight: FontWeight.w400,
-      color: AppColors.whiteColor,
+      color: AppColors.white,
     ),
     bodyLarge: const TextStyle().copyWith(
       fontFamily: 'SignikaNegative',
       fontSize: 14.0,
       fontWeight: FontWeight.w500,
-      color: AppColors.whiteColor, // Input'un içinde yazı yazma rengi
+      color: AppColors.white, // Input'un içinde yazı yazma rengi
     ),
     bodyMedium: const TextStyle().copyWith(
       fontFamily: 'SignikaNegative',
       fontSize: 14.0,
       fontWeight: FontWeight.normal,
-      color: AppColors.whiteColor, // Input text rengi
+      color: AppColors.white, // Input text rengi
     ),
     bodySmall: const TextStyle().copyWith(
         fontFamily: 'SignikaNegative',
         fontSize: 14.0,
         fontWeight: FontWeight.w500,
-        color: AppColors.whiteColor.withOpacity(0.5)),
+        color: AppColors.white.withOpacity(0.5)),
 
     ///
     labelLarge: const TextStyle().copyWith(
       fontFamily: 'SignikaNegative',
       fontSize: 12.0,
       fontWeight: FontWeight.normal,
-      color: AppColors.whiteColor,
+      color: AppColors.white,
     ),
     labelMedium: const TextStyle().copyWith(
       fontFamily: 'SignikaNegative',
       fontSize: 12.0,
       fontWeight: FontWeight.normal,
-      color: AppColors.whiteColor.withOpacity(0.5),
+      color: AppColors.white.withOpacity(0.5),
     ),
 
     labelSmall: const TextStyle().copyWith(
@@ -180,7 +180,7 @@ class TTextTheme {
     displayLarge: const TextStyle(
         fontFamily: 'SignikaNegative',
         fontSize: 40,
-        color: AppColors.primaryTextTextColor,
+        color: AppColors.textPrimary,
         fontWeight: FontWeight.w500,
         height: 1.6),
     displayMedium: const TextStyle(
