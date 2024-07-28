@@ -70,8 +70,7 @@ class ForgetPassword extends StatelessWidget {
                       /// Submit Button
                       TElevatedButton(
                           text: TTexts.submit,
-                          onPressed: () => Get.off(
-                              () => controller.sendPasswordResetEmail())),
+                          onPressed: () => controller.sendPasswordResetEmail()),
                     ],
                   ),
                 ),
