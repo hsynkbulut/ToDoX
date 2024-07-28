@@ -20,6 +20,18 @@ class UserModel {
 
   String get fullName => '$firstName $lastName';
 
+  // Static function to split full name into first and last name.
+  static List<String> nameParts(fullName) => fullName.split(" ");
+
+  // Static function to create an empty user model.
+  static UserModel empty() => UserModel(
+        userId: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        creationDate: DateTime.now(),
+      );
+
   // JSON'dan UserModel nesnesi oluşturmak için factory constructor
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);

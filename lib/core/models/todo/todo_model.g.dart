@@ -12,6 +12,7 @@ TodoModel _$TodoModelFromJson(Map<String, dynamic> json) => TodoModel(
       title: json['title'] as String,
       description: json['description'] as String,
       isCompleted: json['isCompleted'] as bool,
+      creationDate: DateTime.parse(json['creationDate'] as String),
     );
 
 Map<String, dynamic> _$TodoModelToJson(TodoModel instance) => <String, dynamic>{
@@ -20,4 +21,5 @@ Map<String, dynamic> _$TodoModelToJson(TodoModel instance) => <String, dynamic>{
       'title': instance.title,
       'description': instance.description,
       'isCompleted': instance.isCompleted,
+      'creationDate': instance.creationDate.toIso8601String(),
     };

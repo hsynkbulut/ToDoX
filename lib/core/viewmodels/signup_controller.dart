@@ -64,8 +64,9 @@ class SignupController extends GetxController {
 
       // Show Success Message
       TLoaders.successSnackBar(
-          title: 'Congratulations',
-          message: 'Your account has been created! Verify email to continue.');
+          title: 'Tebrikler',
+          message:
+              'Hesabınız oluşturuldu! Devam etmek için e-postayı doğrulayın.');
 
       // Move to Verify Email Screen
       Get.to(() => VerifyEmailScreen(email: email.text.trim()));

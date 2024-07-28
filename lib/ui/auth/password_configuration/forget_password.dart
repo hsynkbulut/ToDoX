@@ -4,6 +4,7 @@ import 'package:anytime_todo_app/common/constants/text_strings.dart';
 import 'package:anytime_todo_app/common/helpers/device_utilities_extensions.dart';
 import 'package:anytime_todo_app/common/widgets/buttons/t_elevated_button.dart';
 import 'package:anytime_todo_app/core/utils/validators/validation.dart';
+import 'package:anytime_todo_app/core/viewmodels/forget_password_controller.dart';
 import 'package:anytime_todo_app/ui/auth/password_configuration/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,7 @@ class ForgetPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ForgetPasswordController());
     final width = context.screenWidth;
     final height = context.screenHeight;
     return Scaffold(
@@ -45,7 +47,7 @@ class ForgetPassword extends StatelessWidget {
               SizedBox(height: height * 0.04),
 
               Form(
-                //key: model.formKey,
+                key: controller.forgetPasswordFormKey,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: TSizes.spaceBtwSections),
@@ -53,7 +55,8 @@ class ForgetPassword extends StatelessWidget {
                     children: [
                       /// Email
                       TextFormField(
-                        validator: (value) => TValidator.validateEmail(value),
+                        controller: controller.email,
+                        validator: TValidator.validateEmail,
                         keyboardType: TextInputType.emailAddress,
                         decoration: const InputDecoration(
                             labelText: TTexts.email,
@@ -65,8 +68,8 @@ class ForgetPassword extends StatelessWidget {
                       /// Submit Button
                       TElevatedButton(
                           text: TTexts.submit,
-                          onPressed: () =>
-                              Get.off(() => const ResetPassword())),
+                          onPressed: () => Get.off(
+                              () => controller.sendPasswordResetEmail())),
                     ],
                   ),
                 ),

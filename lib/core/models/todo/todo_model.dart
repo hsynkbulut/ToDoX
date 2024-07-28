@@ -9,6 +9,7 @@ class TodoModel {
   final String title;
   final String description;
   final bool isCompleted;
+  final DateTime creationDate;
 
   TodoModel({
     required this.userId,
@@ -16,7 +17,26 @@ class TodoModel {
     required this.title,
     required this.description,
     required this.isCompleted,
+    required this.creationDate,
   });
+
+  TodoModel copyWith({
+    String? userId,
+    String? todoId,
+    String? title,
+    String? description,
+    bool? isCompleted,
+    DateTime? creationDate,
+  }) {
+    return TodoModel(
+      userId: userId ?? this.userId,
+      todoId: todoId ?? this.todoId,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      isCompleted: isCompleted ?? this.isCompleted,
+      creationDate: creationDate ?? this.creationDate,
+    );
+  }
 
   // JSON'dan TodoModel nesnesi oluşturmak için factory constructor
   factory TodoModel.fromJson(Map<String, dynamic> json) =>
