@@ -52,6 +52,7 @@ class _HomeScreenState extends State<HomeScreen>
                     .textTheme
                     .headlineMedium!
                     .apply(color: AppColors.primary)),
+            SizedBox(height: height * 0.004),
             Row(
               children: [
                 Text(TTexts.welcome,
