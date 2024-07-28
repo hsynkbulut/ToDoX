@@ -4,7 +4,7 @@ class TTexts {
   static const String skip = "Geç";
   static const String done = "Tamam";
   static const String submit = "Gönder";
-  static const String appName = "ToDo";
+  static const String appName = "ToDoX";
   static const String tContinue = "Devam Et";
   static const String viewAll = "Tümünü Görüntüle";
 
@@ -67,7 +67,11 @@ class TTexts {
   static const String createButton = "Oluştur";
   static const String getButton = "Getir";
   static const String updateButton = "Güncelle";
+  static const String updateAccountButton = "Hesabımı Düzenle";
   static const String deleteButton = "Sil";
   static const String deleteAccountButton = "Hesabımı Sil";
   static const String detailButton = "Detay";
+
+  // HOME
+  static const String welcome = "Hoşgeldin,";
 }

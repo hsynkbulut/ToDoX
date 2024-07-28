@@ -33,6 +33,7 @@ class UserController extends GetxController {
       final user = await userRepository.fetchUserDetails();
       this.user(user);
     } catch (e) {
+      print('Kullanıcı kaydı getirilirken hata oluştu: $e');
       user(UserModel.empty());
     }
   }

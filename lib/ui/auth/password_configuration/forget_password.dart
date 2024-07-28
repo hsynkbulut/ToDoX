@@ -5,7 +5,6 @@ import 'package:anytime_todo_app/common/helpers/device_utilities_extensions.dart
 import 'package:anytime_todo_app/common/widgets/buttons/t_elevated_button.dart';
 import 'package:anytime_todo_app/core/utils/validators/validation.dart';
 import 'package:anytime_todo_app/core/viewmodels/forget_password_controller.dart';
-import 'package:anytime_todo_app/ui/auth/password_configuration/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -22,7 +21,9 @@ class ForgetPassword extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.back();
+            },
             icon: const Icon(Icons.arrow_back_ios_new_rounded)),
       ),
       body: SingleChildScrollView(
