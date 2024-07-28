@@ -28,6 +28,7 @@ class SignupForm extends StatelessWidget {
                     controller: controller.firstName,
                     expands: false,
                     decoration: const InputDecoration(
+                        counter: SizedBox.shrink(), //maxLength hidden
                         labelText: TTexts.firstName,
                         prefixIcon: Icon(Iconsax.user)),
                     keyboardType: TextInputType.name,
@@ -42,6 +43,7 @@ class SignupForm extends StatelessWidget {
                     controller: controller.lastName,
                     expands: false,
                     decoration: const InputDecoration(
+                        counter: SizedBox.shrink(), //maxLength hidden
                         labelText: TTexts.lastName,
                         prefixIcon: Icon(Iconsax.user)),
                     keyboardType: TextInputType.text,
@@ -57,7 +59,9 @@ class SignupForm extends StatelessWidget {
               validator: (value) => TValidator.validateEmail(value),
               controller: controller.email,
               decoration: const InputDecoration(
-                  labelText: TTexts.email, prefixIcon: Icon(Iconsax.direct)),
+                  counter: SizedBox.shrink(), //maxLength hidden
+                  labelText: TTexts.email,
+                  prefixIcon: Icon(Iconsax.direct)),
               keyboardType: TextInputType.emailAddress,
               maxLength: 30,
             ),
@@ -82,7 +86,7 @@ class SignupForm extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: TSizes.spaceBtwInputFields),
+            const SizedBox(height: TSizes.defaultSpace),
 
             /// Sign Up Button
             SizedBox(

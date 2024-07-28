@@ -1,3 +1,4 @@
+import 'package:anytime_todo_app/common/constants/app_colors.dart';
 import 'package:anytime_todo_app/common/constants/t_sizes.dart';
 import 'package:anytime_todo_app/common/helpers/device_utilities_extensions.dart';
 import 'package:flutter/material.dart';
@@ -26,14 +27,17 @@ class OnBoardingPage extends StatelessWidget {
           ),
           Text(
             title,
-            style: Theme.of(context).textTheme.headlineMedium,
-            textAlign: TextAlign.center,
+            style: Theme.of(context)
+                .textTheme
+                .headlineMedium!
+                .copyWith(color: AppColors.info),
+            textAlign: TextAlign.left,
           ),
           const SizedBox(height: TSizes.spaceBtwItems),
           Text(
             subTitle,
-            style: Theme.of(context).textTheme.headlineMedium,
-            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyLarge,
+            textAlign: TextAlign.left,
           ),
         ],
       ),

@@ -7,6 +7,7 @@ version: 1.0.0+1
 environment:
   sdk: '>=3.4.3 <4.0.0'
 
+#------------------ PACKAGES ------------------#
 dependencies:
   flutter:
     sdk: flutter
@@ -38,12 +39,31 @@ dependencies:
   cloud_firestore: ^5.1.0
   flutter_slidable: ^3.1.1
 
-  # ----------------------- ./ PACKAGES END ----------------------- #
+# ----------------------- ./ PACKAGES END ----------------------- #
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+
+#-------------- Native Splash Oluşturma --------------#
+# Terminale şunu yaz: flutter pub run flutter_native_splash:create
+flutter_native_splash:
+  color: "#FFFFFF"
+  color_dark: "#272727"
+  image: assets/logos/logo-todo.png
+  image_dark: assets/logos/logo-todo.png
+
+  android_12:
+    color: "#FFFFFF"
+    color_dark: "#272727"
+    image: assets/logos/logo-todo.png
+    image_dark: assets/logos/logo-todo.png
+  
+  web: false
+#------------------------ ./ ------------------------#
+
+
 
 
 flutter:

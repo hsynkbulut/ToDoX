@@ -26,8 +26,8 @@ class TValidator {
       return 'Şifre alanı boş bırakılamaz';
     }
 
-    if (value.length < 6) {
-      return 'Şifre en az 6 karakter uzunluğunda olmalıdır.';
+    if (value.length < 8) {
+      return 'Şifre en az 8 karakter uzunluğunda olmalıdır.';
     }
 
     if (!value.contains(RegExp(r'[A-Z]'))) {

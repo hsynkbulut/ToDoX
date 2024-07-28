@@ -2,9 +2,9 @@ import 'package:anytime_todo_app/common/constants/app_colors.dart';
 import 'package:anytime_todo_app/common/constants/image_strings.dart';
 import 'package:anytime_todo_app/common/constants/t_sizes.dart';
 import 'package:anytime_todo_app/common/constants/text_strings.dart';
-import 'package:anytime_todo_app/common/helpers/theme_utilities_extensions.dart';
 import 'package:anytime_todo_app/ui/auth/signup/widgets/signup_form.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
@@ -14,7 +14,13 @@ class SignupScreen extends StatelessWidget {
     final dark = context.isDarkMode;
     return Scaffold(
       backgroundColor: dark ? AppColors.black : AppColors.white,
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(TSizes.defaultSpace),
@@ -26,6 +32,7 @@ class SignupScreen extends StatelessWidget {
                 height: 160,
                 image: AssetImage(ImagePaths.appLogo),
               ),
+              const SizedBox(height: TSizes.spaceBtwItems),
 
               /// Title
               Text(TTexts.signUpTitle,

@@ -12,8 +12,7 @@ class TodoList extends StatelessWidget {
   final TodoController controller;
 
   const TodoList(
-      {Key? key, required this.isCompleted, required this.controller})
-      : super(key: key);
+      {super.key, required this.isCompleted, required this.controller});
 
   @override
   Widget build(BuildContext context) {

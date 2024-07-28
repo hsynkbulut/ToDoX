@@ -3,7 +3,6 @@ import 'package:anytime_todo_app/core/utils/popups/loaders.dart';
 import 'package:anytime_todo_app/ui/auth/password_configuration/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class ForgetPasswordController extends GetxController {
   static ForgetPasswordController get instance => Get.find();

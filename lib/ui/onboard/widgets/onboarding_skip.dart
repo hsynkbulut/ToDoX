@@ -1,3 +1,4 @@
+import 'package:anytime_todo_app/common/constants/app_colors.dart';
 import 'package:anytime_todo_app/common/constants/text_strings.dart';
 import 'package:anytime_todo_app/common/helpers/t_device_utility.dart';
 import 'package:anytime_todo_app/core/viewmodels/onboarding_controller.dart';
@@ -13,6 +14,8 @@ class OnBoardingSkip extends StatelessWidget {
     return Positioned(
         top: TDeviceUtils.getAppBarHeight(),
         child: TextButton(
+          style: ButtonStyle(
+              foregroundColor: WidgetStateProperty.all(AppColors.info)),
           onPressed: () => OnboardingController.instance.skipPage(),
           child: const Text(TTexts.skip),
         ));
