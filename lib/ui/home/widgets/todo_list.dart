@@ -1,4 +1,5 @@
 import 'package:anytime_todo_app/common/constants/app_colors.dart';
+import 'package:anytime_todo_app/common/constants/image_strings.dart';
 import 'package:anytime_todo_app/common/helpers/device_utilities_extensions.dart';
 import 'package:anytime_todo_app/ui/home/widgets/update_todo_bottom_sheet.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,8 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:anytime_todo_app/core/models/todo/todo_model.dart';
 import 'package:anytime_todo_app/core/viewmodels/todo_controller.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:lottie/lottie.dart';
 
 class TodoList extends StatelessWidget {
   final bool isCompleted;
@@ -22,6 +25,35 @@ class TodoList extends StatelessWidget {
           .where((todo) => todo.isCompleted == isCompleted)
           .toList()
         ..sort((a, b) => b.creationDate.compareTo(a.creationDate));
+
+      if (filteredTodos.isEmpty) {
+        return Center(
+          child: Column(
+            children: [
+              Center(
+                child: Container(
+                  padding: EdgeInsets.all(height * 0.01),
+                  width: height * 0.4,
+                  height: height * 0.4,
+                  child: Center(
+                    child: Lottie.asset(
+                      ImagePaths.catsAreBeingLazyLottie,
+                      width: height * 0.4,
+                      height: height * 0.4,
+                      // fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+              Center(
+                  child: Text(
+                "Todo eklemek için (+) butonuna tıkla",
+                style: Theme.of(context).textTheme.headlineSmall,
+              )),
+            ],
+          ),
+        );
+      }
 
       return ListView.builder(
         itemCount: filteredTodos.length,
@@ -46,7 +78,7 @@ class TodoList extends StatelessWidget {
                     },
                     backgroundColor: AppColors.success,
                     foregroundColor: AppColors.white,
-                    icon: Icons.edit,
+                    icon: Iconsax.edit,
                     label: 'Güncelle',
                   ),
                   SlidableAction(
@@ -56,7 +88,7 @@ class TodoList extends StatelessWidget {
                     },
                     backgroundColor: AppColors.error,
                     foregroundColor: AppColors.white,
-                    icon: Icons.delete,
+                    icon: Iconsax.trash,
                     label: 'Sil',
                   ),
                 ],
