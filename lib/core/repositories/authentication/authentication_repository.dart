@@ -1,10 +1,11 @@
-import 'package:anytime_todo_app/common/widgets/bottom_navbar/navigation_menu.dart';
+import 'package:anytime_todo_app/core/repositories/user/user_repository.dart';
 import 'package:anytime_todo_app/core/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:anytime_todo_app/core/utils/exceptions/firebase_exceptions.dart';
 import 'package:anytime_todo_app/core/utils/exceptions/format_exceptions.dart';
 import 'package:anytime_todo_app/core/utils/exceptions/platform_exceptions.dart';
 import 'package:anytime_todo_app/ui/auth/login/login_screen.dart';
 import 'package:anytime_todo_app/ui/auth/signup/verify_email.dart';
+import 'package:anytime_todo_app/ui/home/home_screen.dart';
 import 'package:anytime_todo_app/ui/onboard/onboarding_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,9 @@ class AuthenticationRepository extends GetxController {
   final deviceStorage = GetStorage();
   final _auth = FirebaseAuth.instance;
 
+  // Get Authenticated User Data
+  User? get authUser => _auth.currentUser;
+
   // Called from main.dart on app launch
   @override
   void onReady() {
@@ -29,11 +33,12 @@ class AuthenticationRepository extends GetxController {
   }
 
   // Function to Show Relevant Screen
-  screenRedirect() async {
+  void screenRedirect() async {
     final user = _auth.currentUser;
     if (user != null) {
       if (user.emailVerified) {
-        Get.offAll(() => const NavigationMenu());
+        // Get.offAll(() => const NavigationMenu());
+        Get.offAll(() => const HomeScreen());
       } else {
         Get.offAll(() => VerifyEmailScreen(email: _auth.currentUser?.email));
       }
@@ -105,9 +110,22 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-  // [ReAuthenticate] - ReAuthenticate User
-
   // [EmailAuthentication] - FORGET PASSWORD
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Bir şeyler yanlış gitti. Lütfen tekrar deneyin.';
+    }
+  }
 
   // [LogoutUser] - Valid for any authentication.
   Future<void> logout() async {
@@ -127,5 +145,44 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
+  // [ReAuthenticate] - ReAuthenticate User
+  Future<void> reAuthenticateWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      // Create a credential
+      AuthCredential credential =
+          EmailAuthProvider.credential(email: email, password: password);
+
+      // ReAuthenticate
+      await _auth.currentUser!.reauthenticateWithCredential(credential);
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Bir şeyler yanlış gitti. Lütfen tekrar deneyin.';
+    }
+  }
+
   // [DeleteUser] - Remove user Auth and Firestore Account.
+  Future<void> deleteAccount() async {
+    try {
+      await UserRepository.instance.removeUserRecord(_auth.currentUser!.uid);
+      await _auth.currentUser!.delete();
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Bir şeyler yanlış gitti. Lütfen tekrar deneyin.';
+    }
+  }
 }

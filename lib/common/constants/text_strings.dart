@@ -4,8 +4,9 @@ class TTexts {
   static const String skip = "Geç";
   static const String done = "Tamam";
   static const String submit = "Gönder";
-  static const String tContinue = "Devam Et";
   static const String appName = "ToDo";
+  static const String tContinue = "Devam Et";
+  static const String viewAll = "Tümünü Görüntüle";
 
   // Onboarding Title
   static const String onboardingTitle1 = "Sayfa 1'desiniz şu anda";

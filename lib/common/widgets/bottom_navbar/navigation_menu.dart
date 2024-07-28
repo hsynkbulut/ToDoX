@@ -1,4 +1,5 @@
 import 'package:anytime_todo_app/common/constants/app_colors.dart';
+import 'package:anytime_todo_app/ui/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -39,7 +40,8 @@ class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
 
   final screens = [
-    Container(color: Colors.green),
+    // Container(color: Colors.green),
+    const HomeScreen(),
     Container(color: Colors.purple),
     Container(color: Colors.orange)
   ];
