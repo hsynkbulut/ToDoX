@@ -36,6 +36,7 @@ class _LoginFormState extends State<LoginForm> {
               keyboardType: TextInputType.emailAddress,
               maxLength: 30,
               decoration: const InputDecoration(
+                  counter: SizedBox.shrink(), //maxLength hidden
                   prefixIcon: Icon(Iconsax.direct_right),
                   labelText: TTexts.email),
             ),

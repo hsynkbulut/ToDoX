@@ -9,15 +9,15 @@ class TTexts {
   static const String viewAll = "Tümünü Görüntüle";
 
   // Onboarding Title
-  static const String onboardingTitle1 = "Sayfa 1'desiniz şu anda";
+  static const String onboardingTitle1 = "Kolayca Görev Yönetin";
   static const String onboardingSubTitle1 =
-      "Yapılacak işleriniz takip etmeyi seviyorsanız doğru yerdesiniz. Uygulamamızı keşfedin ve işlerinizi düzene sokmanın keyfini yaşayın!";
-  static const String onboardingTitle2 = "Sayfa 2'desiniz şu anda";
+      "Yapılacaklar listenizi hızlı ve kolay bir şekilde ekleyin, tamamlayın veya düzenleyin. Üretkenliğinizi artırın!";
+  static const String onboardingTitle2 = "Tamamlanan ve Tamamlanmayan Görevler";
   static const String onboardingSubTitle2 =
-      "Yapılacak işleriniz takip etmeyi seviyorsanız doğru yerdesiniz.";
-  static const String onboardingTitle3 = "Sayfa 3'desiniz şu anda";
+      "Görevlerinizi tamamlanma durumlarına göre ayrı sekmelerde görüntüleyin. Hangi görevlerin tamamlandığını ve hangilerinin yapılması gerektiğini kolayca takip edin.";
+  static const String onboardingTitle3 = "Kişisel Profiliniz";
   static const String onboardingSubTitle3 =
-      "Uygulamamızı keşfedin ve işlerinizi düzene sokmanın keyfini yaşayın!";
+      "Profil bilgilerinizi görüntüleyin ve güncelleyin. Hesabınızı kolayca yönetip düzenleyin ve güvenli bir şekilde çıkış yapın.";
 
   // Authentication Form Text
   static const String firstName = "Ad";

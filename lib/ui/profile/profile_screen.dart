@@ -7,8 +7,10 @@ import 'package:anytime_todo_app/common/widgets/custom_shapes/containers/primary
 import 'package:anytime_todo_app/common/widgets/texts/section_heading.dart';
 import 'package:anytime_todo_app/core/repositories/authentication/authentication_repository.dart';
 import 'package:anytime_todo_app/core/viewmodels/user_controller.dart';
+import 'package:anytime_todo_app/ui/edit_profile/edit_profile_screen.dart';
 import 'package:anytime_todo_app/ui/profile/widgets/profile_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../common/constants/t_sizes.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -73,7 +75,10 @@ class ProfileScreen extends StatelessWidget {
 
                   /// Account Edit Button
                   TElevatedButton(
-                      text: TTexts.updateAccountButton, onPressed: () {}),
+                    text: TTexts.updateAccountButton,
+                    onPressed: () => Get.to(
+                        () => EditProfileScreen(user: controller.user.value)),
+                  ),
                   const SizedBox(height: TSizes.defaultSpace),
 
                   /// SignOut Button

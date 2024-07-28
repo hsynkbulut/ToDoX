@@ -60,6 +60,7 @@ class ForgetPassword extends StatelessWidget {
                         validator: TValidator.validateEmail,
                         keyboardType: TextInputType.emailAddress,
                         decoration: const InputDecoration(
+                            counter: SizedBox.shrink(), //maxLength hidden
                             labelText: TTexts.email,
                             prefixIcon: Icon(Iconsax.direct_right)),
                         maxLength: 30,

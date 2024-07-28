@@ -70,6 +70,10 @@ class _HomeScreenState extends State<HomeScreen>
         ),
         actions: [
           IconButton(
+            style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all(
+                    AppColors.primary.withOpacity(0.12))),
+            color: AppColors.primary,
             onPressed: () => Get.to(() => const ProfileScreen()),
             icon: const Icon(Iconsax.user),
           ),
@@ -103,6 +107,19 @@ class _HomeScreenState extends State<HomeScreen>
             vertical: height * 0.03, horizontal: width * 0.05),
         child: Column(
           children: [
+            TabBar(
+              overlayColor:
+                  WidgetStateProperty.all(AppColors.primary.withOpacity(0.1)),
+              controller: _tabController,
+              indicatorColor: AppColors.primary,
+              labelColor: AppColors.primary,
+              dividerColor: AppColors.grey,
+              tabs: const [
+                Tab(text: 'Tamamlanmamış'),
+                Tab(text: 'Tamamlanmış'),
+              ],
+            ),
+            SizedBox(height: height * 0.02),
             TextField(
               decoration: const InputDecoration(
                 hintText: 'Todo ara...',

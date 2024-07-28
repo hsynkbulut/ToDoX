@@ -20,6 +20,11 @@ class UserController extends GetxController {
   final verifyPassword = TextEditingController();
   final userRepository = Get.put(UserRepository());
   GlobalKey<FormState> reAuthFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> editFormKey = GlobalKey<FormState>();
+  final updateEmail = TextEditingController();
+  final updatePassword = TextEditingController();
+  final updateFirstName = TextEditingController();
+  final updateLastName = TextEditingController();
 
   @override
   void onInit() {
@@ -112,6 +117,39 @@ class UserController extends GetxController {
       Get.offAll(() => const LoginScreen());
     } catch (e) {
       TLoaders.warningSnackBar(title: 'Ooops', message: e.toString());
+    }
+  }
+
+  void initUpdateControllers(UserModel user) {
+    updateEmail.text = user.email;
+    updateFirstName.text = user.firstName;
+    updateLastName.text = user.lastName;
+  }
+
+  Future<void> updateUserDetails(UserModel user) async {
+    try {
+      // Form Validation
+      if (!editFormKey.currentState!.validate()) {
+        return;
+      }
+
+      // Update todo data in the Firebase Firestore
+      final updatedUser = UserModel(
+        userId: user.userId,
+        firstName: updateFirstName.text.trim(),
+        lastName: updateLastName.text.trim(),
+        email: updateEmail.text.trim(),
+        creationDate: user.creationDate,
+      );
+
+      await userRepository.updateUserDetails(updatedUser);
+
+      TLoaders.successSnackBar(
+          title: 'Başarılı', message: 'Kullanıcı bilgileri güncellendi.');
+    } catch (e) {
+      TLoaders.errorSnackBar(
+          title: 'Hata',
+          message: 'Kullanıcı bilgileri güncellenirken bir hata oluştu.');
     }
   }
 }
