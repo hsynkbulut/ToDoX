@@ -47,11 +47,11 @@ class ResetPasswordScreen extends StatelessWidget {
               SizedBox(height: height * 0.02),
               Text(TTexts.changeYourPasswordTitle,
                   style: Theme.of(context).textTheme.headlineMedium,
-                  textAlign: TextAlign.center),
+                  textAlign: TextAlign.left),
               SizedBox(height: height * 0.02),
               Text(TTexts.changeYourPasswordSubTitle,
                   style: Theme.of(context).textTheme.labelMedium,
-                  textAlign: TextAlign.center),
+                  textAlign: TextAlign.left),
               SizedBox(height: height * 0.04),
 
               /// Buttons
