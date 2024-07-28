@@ -11,6 +11,7 @@ class TodoController extends GetxController {
   static TodoController get instance => Get.find();
 
   RxList<TodoModel> todos = <TodoModel>[].obs;
+  var searchQuery = ''.obs;
   final todoRepository = Get.put(TodoRepository());
   late final TodoModel todo;
 
@@ -26,6 +27,24 @@ class TodoController extends GetxController {
   void onInit() {
     super.onInit();
     fetchAllTodos();
+    searchQuery.listen((query) {
+      filterTodos(query);
+    });
+  }
+
+  void filterTodos(String query) {
+    if (query.isEmpty) {
+      fetchAllTodos();
+    } else {
+      todos.assignAll(todos
+          .where(
+              (todo) => todo.title.toLowerCase().contains(query.toLowerCase()))
+          .toList());
+    }
+  }
+
+  void updateSearchQuery(String query) {
+    searchQuery.value = query;
   }
 
   // Fetch all todos for the current user.
@@ -72,22 +91,6 @@ class TodoController extends GetxController {
     }
   }
 
-  /*
-  // Update an existing todo record.
-  Future<void> updateTodoRecord(TodoModel todo) async {
-    try {
-      await todoRepository.updateTodoDetails(todo);
-      final index = todos.indexWhere((t) => t.todoId == todo.todoId);
-      if (index != -1) {
-        todos[index] = todo;
-      }
-    } catch (e) {
-      TLoaders.warningSnackBar(
-          title: 'Güncelleme Hatası',
-          message: 'Todo güncellenirken bir hata oluştu.');
-    }
-  }
-  */
   void initUpdateControllers(TodoModel todo) {
     updateTitleController.text = todo.title;
     updateDescriptionController.text = todo.description;

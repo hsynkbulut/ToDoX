@@ -65,13 +65,14 @@ class _HomeScreenState extends State<HomeScreen>
         child: Column(
           children: [
             TextField(
-              controller: _searchController,
               decoration: const InputDecoration(
                 hintText: 'Todo ara...',
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
               ),
-              onChanged: (value) {},
+              onChanged: (value) {
+                controller.updateSearchQuery(value);
+              },
             ),
             SizedBox(height: height * 0.02),
             Expanded(
