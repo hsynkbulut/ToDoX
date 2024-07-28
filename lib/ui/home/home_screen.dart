@@ -80,29 +80,6 @@ class _HomeScreenState extends State<HomeScreen>
           ),
         ],
       ),
-      /*
-      appBar: AppBar(
-        title: const Text('ToDoX'),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Iconsax.user),
-          ),
-        ],
-        bottom: TabBar(
-          overlayColor:
-              WidgetStateProperty.all(AppColors.primary.withOpacity(0.1)),
-          controller: _tabController,
-          indicatorColor: AppColors.primary,
-          labelColor: AppColors.primary,
-          dividerColor: AppColors.grey,
-          tabs: const [
-            Tab(text: 'Tamamlanmamış'),
-            Tab(text: 'Tamamlanmış'),
-          ],
-        ),
-      ),
-      */
       body: Padding(
         padding: EdgeInsets.symmetric(
             vertical: height * 0.03, horizontal: width * 0.05),
