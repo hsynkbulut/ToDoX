@@ -11,19 +11,21 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = context.isDarkMode;
-    return Scaffold(
-      backgroundColor: dark ? AppColors.black : AppColors.white,
-      body: const SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(TSizes.defaultSpace),
-          child: Column(
-            children: [
-              /// Logo, Title & Sub-Title
-              LoginHeader(),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: dark ? AppColors.black : AppColors.white,
+        body: const SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(TSizes.defaultSpace),
+            child: Column(
+              children: [
+                /// Logo, Title & Sub-Title
+                LoginHeader(),
 
-              /// Form
-              LoginForm(),
-            ],
+                /// Form
+                LoginForm(),
+              ],
+            ),
           ),
         ),
       ),

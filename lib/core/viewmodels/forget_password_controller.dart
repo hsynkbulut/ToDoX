@@ -43,7 +43,7 @@ class ForgetPasswordController extends GetxController {
       TLoaders.successSnackBar(
           title: 'E-posta Gönderildi',
           message:
-              'Hesabınız oluşturuldu! Devam etmek için e-postayı doğrulayın.'
+              'Şifre sıfırlamak için e-posta adresinize bir bağlantı gönderildi!'
                   .tr);
 
       // Redirect
