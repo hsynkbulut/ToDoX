@@ -8,7 +8,6 @@ class ImagePaths {
 
   // App Logos
   static const String appLogo = "$logosPath/logo-todo.png";
-  static const String darkAppLogo = "$logosPath/logo-todo.png";
 
   // Onboarding Images
   static const String onboardingImage1 = '$onboardPath/onboardingImage1.png';

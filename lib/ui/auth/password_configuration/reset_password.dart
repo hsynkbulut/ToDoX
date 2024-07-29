@@ -1,4 +1,3 @@
-import 'package:anytime_todo_app/common/constants/app_colors.dart';
 import 'package:anytime_todo_app/common/constants/image_strings.dart';
 import 'package:anytime_todo_app/common/constants/t_sizes.dart';
 import 'package:anytime_todo_app/common/constants/text_strings.dart';
@@ -39,7 +38,7 @@ class ResetPasswordScreen extends StatelessWidget {
               /// Image
               Center(
                   child: Lottie.asset(ImagePaths.resetPasswordEmailLottie,
-                      width: width * 0.9, height: height * 0.45)),
+                      width: width * 0.8, height: height * 0.4)),
               SizedBox(height: height * 0.01),
 
               /// Email, Title & SubTitle
@@ -60,7 +59,7 @@ class ResetPasswordScreen extends StatelessWidget {
               TElevatedButton(
                   text: TTexts.done,
                   onPressed: () => Get.offAll(() => const LoginScreen())),
-              SizedBox(height: height * 0.03),
+              SizedBox(height: height * 0.02),
               SizedBox(
                 width: double.infinity,
                 child: TTextButton(
