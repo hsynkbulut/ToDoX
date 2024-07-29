@@ -35,7 +35,7 @@ class ForgetPassword extends StatelessWidget {
             children: [
               /// Image
               Center(
-                  child: Lottie.asset(ImagePaths.catPlayingLottie,
+                  child: Lottie.asset(ImagePaths.forgotPasswordLottie,
                       width: width * 0.9, height: height * 0.45)),
               SizedBox(height: height * 0.01),
 

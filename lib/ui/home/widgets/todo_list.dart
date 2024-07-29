@@ -37,7 +37,7 @@ class TodoList extends StatelessWidget {
                   height: height * 0.4,
                   child: Center(
                     child: Lottie.asset(
-                      ImagePaths.catsAreBeingLazyLottie,
+                      ImagePaths.emptyListLottie,
                       width: height * 0.4,
                       height: height * 0.4,
                       // fit: BoxFit.cover,

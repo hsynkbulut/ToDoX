@@ -1,6 +1,9 @@
+import 'package:anytime_todo_app/common/constants/image_strings.dart';
 import 'package:anytime_todo_app/core/models/user/user_model.dart';
 import 'package:anytime_todo_app/core/repositories/authentication/authentication_repository.dart';
 import 'package:anytime_todo_app/core/repositories/user/user_repository.dart';
+import 'package:anytime_todo_app/core/utils/helpers/network_manager.dart';
+import 'package:anytime_todo_app/core/utils/popups/full_screen_loader.dart';
 import 'package:anytime_todo_app/core/utils/popups/loaders.dart';
 import 'package:anytime_todo_app/ui/auth/signup/verify_email.dart';
 import 'package:flutter/material.dart';
@@ -21,25 +24,22 @@ class SignupController extends GetxController {
   // Signup
   void signup() async {
     try {
-      /*
       // Start Loading
       TFullScreenLoader.openLoadingDialog(
-          'Wea are processing your information...',
-          ImagePaths.catPlayingLottie);
-   
+          'Bilgilerinizi işliyoruz...', ImagePaths.documentProcessingLottie);
+
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
-        // Remove Loader
-        TFullScreenLoader.stopLoading();
+        // Show connectivity error and return
+        TLoaders.errorSnackBar(
+            title: 'Internet yok',
+            message: 'Lütfen internet bağlantınızı kontrol edin.');
         return;
       }
-      */
 
       // Form Validation
       if (!signupFormKey.currentState!.validate()) {
-        // Remove Loader
-        // TFullScreenLoader.stopLoading();
         return;
       }
 
@@ -59,9 +59,6 @@ class SignupController extends GetxController {
       final userRepository = Get.put(UserRepository());
       await userRepository.saveUserRecord(newUser);
 
-      // Remove Loader
-      //TFullScreenLoader.stopLoading();
-
       // Show Success Message
       TLoaders.successSnackBar(
           title: 'Tebrikler',
@@ -71,14 +68,8 @@ class SignupController extends GetxController {
       // Move to Verify Email Screen
       Get.to(() => VerifyEmailScreen(email: email.text.trim()));
     } catch (e) {
-      // Remove Loader
-      //TFullScreenLoader.stopLoading();
-
       // Show some Generic Error to the user
-      TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
-    } finally {
-      // Remove Loader
-      //TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackBar(title: 'Ooops!', message: e.toString());
     }
   }
 }

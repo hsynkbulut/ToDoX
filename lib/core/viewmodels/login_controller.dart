@@ -1,4 +1,7 @@
+import 'package:anytime_todo_app/common/constants/image_strings.dart';
 import 'package:anytime_todo_app/core/repositories/authentication/authentication_repository.dart';
+import 'package:anytime_todo_app/core/utils/helpers/network_manager.dart';
+import 'package:anytime_todo_app/core/utils/popups/full_screen_loader.dart';
 import 'package:anytime_todo_app/core/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,24 +28,22 @@ class LoginController extends GetxController {
   // Email and Password SignIn
   Future<void> emailAndPasswordSignIn() async {
     try {
-      /*
       // Start Loading
       TFullScreenLoader.openLoadingDialog(
-          'Logging you in...', ImagePaths.catPlayingLottie);
+          'Giriş yapıyorsun...', ImagePaths.documentProcessingLottie);
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
-        // Remove Loader
-        TFullScreenLoader.stopLoading();
+        // Show connectivity error and return
+        TLoaders.errorSnackBar(
+            title: 'Internet yok',
+            message: 'Lütfen internet bağlantınızı kontrol edin.');
         return;
       }
-      */
 
       // Form Validation
       if (!loginFormKey.currentState!.validate()) {
-        // Remove Loader
-        //TFullScreenLoader.stopLoading();
         return;
       }
 
@@ -56,20 +57,11 @@ class LoginController extends GetxController {
       final userCredentials = await AuthenticationRepository.instance
           .loginWithEmailPassword(email.text.trim(), password.text.trim());
 
-      // Remove Loader
-      //TFullScreenLoader.stopLoading();
-
       // Redirect
       AuthenticationRepository.instance.screenRedirect();
     } catch (e) {
-      // Remove Loader
-      // TFullScreenLoader.stopLoading();
-
       // Show some Generic Error to the user
       TLoaders.errorSnackBar(title: 'Ooops', message: e.toString());
-    } finally {
-      // Remove Loader
-      // TFullScreenLoader.stopLoading();
     }
   }
 }

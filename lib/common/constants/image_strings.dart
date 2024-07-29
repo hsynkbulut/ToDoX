@@ -18,19 +18,17 @@ class ImagePaths {
   // Animations
   static const String deliveredEmailIllustration =
       "$animationsPath/vecteezy_send-email-icon.png";
-  static const String verifyIllustration =
-      "$animationsPath/vecteezy_send-email-icon.png";
-  static const String staticSuccessIllustration =
-      "$animationsPath/vecteezy_send-email-icon.png";
 
   // Animation Lottie
-  static const String catPlayingLottie =
-      '$animationsPath/cat_playing_animation.json';
   static const String successLottie = '$animationsPath/success_animation.json';
-  static const String woodpeckerLottie =
-      '$animationsPath/woodpecker_animation.json';
   static const String specialLoadingLottie =
       '$animationsPath/special_loading_animation.json';
-  static const String catsAreBeingLazyLottie =
-      '$animationsPath/cats_are_being_lazy_animation.json';
+  static const String documentProcessingLottie =
+      '$animationsPath/chat_letter_glass_morphing.json';
+  static const String emptyListLottie =
+      '$animationsPath/empty_list_animation.json';
+  static const String forgotPasswordLottie =
+      '$animationsPath/forgot_password.json';
+  static const String resetPasswordEmailLottie =
+      '$animationsPath/reset_password_email.json';
 }
