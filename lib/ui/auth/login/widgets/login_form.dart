@@ -1,7 +1,9 @@
+import 'package:anytime_todo_app/common/constants/app_colors.dart';
 import 'package:anytime_todo_app/common/constants/t_sizes.dart';
 import 'package:anytime_todo_app/common/constants/text_strings.dart';
 import 'package:anytime_todo_app/common/widgets/buttons/t_elevated_button.dart';
 import 'package:anytime_todo_app/common/widgets/buttons/t_outlined_button.dart';
+import 'package:anytime_todo_app/common/widgets/buttons/t_text_button.dart';
 import 'package:anytime_todo_app/core/utils/validators/validation.dart';
 import 'package:anytime_todo_app/core/viewmodels/login_controller.dart';
 import 'package:anytime_todo_app/ui/auth/password_configuration/forget_password.dart';
@@ -80,9 +82,10 @@ class _LoginFormState extends State<LoginForm> {
                   ],
                 ),
                 // Forget Password
-                TextButton(
-                    onPressed: () => Get.to(() => const ForgetPassword()),
-                    child: const Text(TTexts.forgetPassword)),
+                TTextButton(
+                  text: TTexts.forgetPassword,
+                  onPressed: () => Get.to(() => const ForgetPassword()),
+                ),
               ],
             ),
             const SizedBox(height: TSizes.spaceBtwSections),

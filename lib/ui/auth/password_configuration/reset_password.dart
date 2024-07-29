@@ -1,8 +1,10 @@
+import 'package:anytime_todo_app/common/constants/app_colors.dart';
 import 'package:anytime_todo_app/common/constants/image_strings.dart';
 import 'package:anytime_todo_app/common/constants/t_sizes.dart';
 import 'package:anytime_todo_app/common/constants/text_strings.dart';
 import 'package:anytime_todo_app/common/helpers/device_utilities_extensions.dart';
 import 'package:anytime_todo_app/common/widgets/buttons/t_elevated_button.dart';
+import 'package:anytime_todo_app/common/widgets/buttons/t_text_button.dart';
 import 'package:anytime_todo_app/core/viewmodels/forget_password_controller.dart';
 import 'package:anytime_todo_app/ui/auth/login/login_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -36,7 +38,7 @@ class ResetPasswordScreen extends StatelessWidget {
             children: [
               /// Image
               Center(
-                  child: Lottie.asset(ImagePaths.catPlayingLottie,
+                  child: Lottie.asset(ImagePaths.resetPasswordEmailLottie,
                       width: width * 0.9, height: height * 0.45)),
               SizedBox(height: height * 0.01),
 
@@ -61,10 +63,11 @@ class ResetPasswordScreen extends StatelessWidget {
               SizedBox(height: height * 0.03),
               SizedBox(
                 width: double.infinity,
-                child: TextButton(
-                    onPressed: () => ForgetPasswordController.instance
-                        .resendPasswordResetEmail(email),
-                    child: const Text(TTexts.resendEmail)),
+                child: TTextButton(
+                  text: TTexts.resendEmail,
+                  onPressed: () => ForgetPasswordController.instance
+                      .resendPasswordResetEmail(email),
+                ),
               ),
             ],
           ),
