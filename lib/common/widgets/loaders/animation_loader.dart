@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:anytime_todo_app/common/constants/t_sizes.dart';
 import 'package:anytime_todo_app/common/helpers/device_utilities_extensions.dart';
 import 'package:anytime_todo_app/common/widgets/buttons/t_outlined_button.dart';
+import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class TAnimationLoaderWidget extends StatelessWidget {
   const TAnimationLoaderWidget({
-    super.key,
     required this.text,
     required this.animation,
+    super.key,
     this.showAction = false,
     this.actionText,
     this.onActionPressed,
@@ -34,15 +34,16 @@ class TAnimationLoaderWidget extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: TSizes.defaultSpace),
-          showAction
-              ? SizedBox(
-                  width: 250,
-                  child: TOutlinedButton(
-                    onPressed: onActionPressed ?? () {},
-                    text: actionText ?? '',
-                  ),
-                )
-              : const SizedBox(),
+          if (showAction)
+            SizedBox(
+              width: 250,
+              child: TOutlinedButton(
+                onPressed: onActionPressed ?? () {},
+                text: actionText ?? '',
+              ),
+            )
+          else
+            const SizedBox(),
         ],
       ),
     );

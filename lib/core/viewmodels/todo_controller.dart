@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:anytime_todo_app/common/constants/app_colors.dart';
 import 'package:anytime_todo_app/common/constants/t_sizes.dart';
 import 'package:anytime_todo_app/core/models/todo/todo_model.dart';
 import 'package:anytime_todo_app/core/repositories/authentication/authentication_repository.dart';
 import 'package:anytime_todo_app/core/repositories/todo/todo_repository.dart';
 import 'package:anytime_todo_app/core/utils/popups/loaders.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +14,7 @@ class TodoController extends GetxController {
   static TodoController get instance => Get.find();
 
   RxList<TodoModel> todos = <TodoModel>[].obs;
-  var searchQuery = ''.obs;
+  RxString searchQuery = ''.obs;
   final todoRepository = Get.put(TodoRepository());
   late final TodoModel todo;
 
@@ -27,23 +30,24 @@ class TodoController extends GetxController {
   void onInit() {
     super.onInit();
     fetchAllTodos();
-    searchQuery.listen((query) {
-      filterTodos(query);
-    });
+    searchQuery.listen(filterTodos);
   }
 
   void filterTodos(String query) {
     if (query.isEmpty) {
       fetchAllTodos();
     } else {
-      todos.assignAll(todos
-          .where(
-              (todo) => todo.title.toLowerCase().contains(query.toLowerCase()))
-          .toList());
+      todos.assignAll(
+        todos
+            .where(
+              (todo) => todo.title.toLowerCase().contains(query.toLowerCase()),
+            )
+            .toList(),
+      );
     }
   }
 
-  void updateSearchQuery(String query) {
+  Future<void> updateSearchQuery(String query) async {
     searchQuery.value = query;
   }
 
@@ -55,11 +59,13 @@ class TodoController extends GetxController {
       todos(userTodos);
     } catch (e) {
       TLoaders.warningSnackBar(
-          title: 'Yükleme Hatası', message: 'Todolar yüklenemedi.');
+        title: 'Yükleme Hatası',
+        message: 'Todolar yüklenemedi.',
+      );
     }
   }
 
-  // Save a new todo record.
+  // Save a new `todo` record.
   Future<void> saveTodoRecord() async {
     try {
       // Form Validation
@@ -67,7 +73,7 @@ class TodoController extends GetxController {
         return;
       }
 
-      // Save todo data in the Firebase Firestore
+      // Save `todo` data in the Firebase Firestore
       final newTodo = TodoModel(
         userId: AuthenticationRepository.instance.authUser!.uid,
         todoId: DateTime.now().millisecondsSinceEpoch.toString(),
@@ -81,13 +87,16 @@ class TodoController extends GetxController {
 
       // Show Success Message
       TLoaders.successSnackBar(
-          title: 'Tebrikler', message: 'Todo başarıyla oluşturuldu!');
+        title: 'Tebrikler',
+        message: 'Todo başarıyla oluşturuldu!',
+      );
 
       todos.add(newTodo);
     } catch (e) {
       TLoaders.warningSnackBar(
-          title: 'Kaydetme Hatası',
-          message: 'Todo kaydedilirken bir hata oluştu.');
+        title: 'Kaydetme Hatası',
+        message: 'Todo kaydedilirken bir hata oluştu.',
+      );
     }
   }
 
@@ -103,7 +112,7 @@ class TodoController extends GetxController {
         return;
       }
 
-      // Update todo data in the Firebase Firestore
+      // Update `todo` data in the Firebase Firestore
       final updatedTodo = TodoModel(
         userId: todo.userId,
         todoId: todo.todoId,
@@ -123,24 +132,33 @@ class TodoController extends GetxController {
       TLoaders.successSnackBar(title: 'Başarılı', message: 'Todo güncellendi.');
     } catch (e) {
       TLoaders.errorSnackBar(
-          title: 'Hata', message: 'Todo güncellenirken bir hata oluştu.');
+        title: 'Hata',
+        message: 'Todo güncellenirken bir hata oluştu.',
+      );
     }
   }
 
-  Future<void> updateCheckbox(String todoId, bool isCompleted) async {
+  Future<void> updateCheckbox(String todoId, dynamic isCompleted) async {
     try {
       await todoRepository.updateSingleField(
-          todoId, 'isCompleted', isCompleted);
+        todoId,
+        'isCompleted',
+        isCompleted,
+      );
 
       // todos listesini güncelle
-      int index = todos.indexWhere((todo) => todo.todoId == todoId);
+      final index = todos.indexWhere((todo) => todo.todoId == todoId);
       if (index != -1) {
-        TodoModel updatedTodo = todos[index].copyWith(isCompleted: isCompleted);
+        final updatedTodo = todos[index].copyWith(
+          isCompleted: isCompleted as bool,
+        );
         todos[index] = updatedTodo;
       }
     } catch (e) {
       // Hata yönetimi
-      print('Error updating checkbox: $e');
+      if (kDebugMode) {
+        print('Error updating checkbox: $e');
+      }
     }
   }
 
@@ -151,35 +169,40 @@ class TodoController extends GetxController {
     super.onClose();
   }
 
-  // Remove a todo record.
+  // Remove a `todo` record.
   Future<void> removeTodoRecord(String todoId) async {
     try {
       await todoRepository.removeTodoRecord(todoId);
       todos.removeWhere((t) => t.todoId == todoId);
     } catch (e) {
       TLoaders.warningSnackBar(
-          title: 'Silme Hatası', message: 'Todo silinirken bir hata oluştu.');
+        title: 'Silme Hatası',
+        message: 'Todo silinirken bir hata oluştu.',
+      );
     }
   }
 
-  // Delete Todo Warning
+  // Delete `todo` Warning
   void removeTodoWarningPopup(String todoId) {
-    Get.defaultDialog(
+    Get.defaultDialog<void>(
       contentPadding: const EdgeInsets.all(TSizes.md),
       title: 'Todo Sil',
       middleText:
+          // ignore: lines_longer_than_80_chars
           'Todonuzu kalıcı olarak silmek istediğinizden emin misiniz? Bu işlem geri alınamaz ve tüm verileriniz kalıcı olarak kaldırılır.',
       confirm: ElevatedButton(
         onPressed: () async {
-          removeTodoRecord(todoId);
+          unawaited(removeTodoRecord(todoId));
           Navigator.of(Get.overlayContext!).pop();
         },
         style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.error,
-            side: const BorderSide(color: AppColors.error)),
+          backgroundColor: AppColors.error,
+          side: const BorderSide(color: AppColors.error),
+        ),
         child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: TSizes.lg),
-            child: Text('Sil')),
+          padding: EdgeInsets.symmetric(horizontal: TSizes.lg),
+          child: Text('Sil'),
+        ),
       ),
       cancel: OutlinedButton(
         onPressed: () => Navigator.of(Get.overlayContext!).pop(),

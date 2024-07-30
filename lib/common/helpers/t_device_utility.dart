@@ -26,9 +26,10 @@ class TDeviceUtils {
     return viewInsets.bottom != 0;
   }
 
-  static void setFullScreen(bool enable) {
+  static void setFullScreen({required bool enable}) {
     SystemChrome.setEnabledSystemUIMode(
-        enable ? SystemUiMode.immersiveSticky : SystemUiMode.edgeToEdge);
+      enable ? SystemUiMode.immersiveSticky : SystemUiMode.edgeToEdge,
+    );
   }
 
   static double getScreenHeight() {
@@ -72,11 +73,12 @@ class TDeviceUtils {
 
   static void vibrate(Duration duration) {
     HapticFeedback.vibrate();
-    Future.delayed(duration, () => HapticFeedback.vibrate());
+    Future.delayed(duration, HapticFeedback.vibrate);
   }
 
   static Future<void> setPreferredOrientations(
-      List<DeviceOrientation> orientations) async {
+    List<DeviceOrientation> orientations,
+  ) async {
     await SystemChrome.setPreferredOrientations(orientations);
   }
 
@@ -85,8 +87,10 @@ class TDeviceUtils {
   }
 
   static void showStatusBar() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: SystemUiOverlay.values);
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.manual,
+      overlays: SystemUiOverlay.values,
+    );
   }
 
   static Future<bool> hasInternetConnection() async {

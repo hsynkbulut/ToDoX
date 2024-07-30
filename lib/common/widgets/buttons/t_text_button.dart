@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 class TTextButton extends StatelessWidget {
   const TTextButton({
+    required this.text,
+    required this.onPressed,
     super.key,
     this.overlayColor = AppColors.dark,
     this.foregroundColor = AppColors.dark,
-    required this.text,
-    required this.onPressed,
   });
 
   final Color? overlayColor;
@@ -18,11 +18,12 @@ class TTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        style: ButtonStyle(
-            overlayColor:
-                WidgetStateProperty.all(overlayColor!.withOpacity(0.1)),
-            foregroundColor: WidgetStateProperty.all(foregroundColor)),
-        onPressed: onPressed,
-        child: Text(text));
+      style: ButtonStyle(
+        overlayColor: WidgetStateProperty.all(overlayColor!.withOpacity(0.1)),
+        foregroundColor: WidgetStateProperty.all(foregroundColor),
+      ),
+      onPressed: onPressed,
+      child: Text(text),
+    );
   }
 }

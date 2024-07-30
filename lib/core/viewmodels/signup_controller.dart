@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:anytime_todo_app/common/constants/image_strings.dart';
 import 'package:anytime_todo_app/core/models/user/user_model.dart';
 import 'package:anytime_todo_app/core/repositories/authentication/authentication_repository.dart';
@@ -22,19 +24,22 @@ class SignupController extends GetxController {
   GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
 
   // Signup
-  void signup() async {
+  Future<void> signup() async {
     try {
       // Start Loading
       TFullScreenLoader.openLoadingDialog(
-          'Bilgilerinizi işliyoruz...', ImagePaths.documentProcessingLottie);
+        'Bilgilerinizi işliyoruz...',
+        ImagePaths.documentProcessingLottie,
+      );
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
         // Show connectivity error and return
         TLoaders.errorSnackBar(
-            title: 'Internet yok',
-            message: 'Lütfen internet bağlantınızı kontrol edin.');
+          title: 'Internet yok',
+          message: 'Lütfen internet bağlantınızı kontrol edin.',
+        );
         return;
       }
 
@@ -43,6 +48,7 @@ class SignupController extends GetxController {
         return;
       }
 
+      // ignore: lines_longer_than_80_chars
       // Register user in the Firebase Authentication & Save user data in the Firebase
       final userCredential = await AuthenticationRepository.instance
           .registerWithEmailPassword(email.text.trim(), password.text.trim());
@@ -61,12 +67,13 @@ class SignupController extends GetxController {
 
       // Show Success Message
       TLoaders.successSnackBar(
-          title: 'Tebrikler',
-          message:
-              'Hesabınız oluşturuldu! Devam etmek için e-postayı doğrulayın.');
+        title: 'Tebrikler',
+        message:
+            'Hesabınız oluşturuldu! Devam etmek için e-postayı doğrulayın.',
+      );
 
       // Move to Verify Email Screen
-      Get.to(() => VerifyEmailScreen(email: email.text.trim()));
+      unawaited(Get.to(() => VerifyEmailScreen(email: email.text.trim())));
     } catch (e) {
       // Show some Generic Error to the user
       TLoaders.errorSnackBar(title: 'Ooops!', message: e.toString());

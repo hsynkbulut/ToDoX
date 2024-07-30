@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:anytime_todo_app/common/constants/image_strings.dart';
 import 'package:anytime_todo_app/core/repositories/authentication/authentication_repository.dart';
 import 'package:anytime_todo_app/core/utils/helpers/network_manager.dart';
@@ -15,19 +17,22 @@ class ForgetPasswordController extends GetxController {
   GlobalKey<FormState> forgetPasswordFormKey = GlobalKey<FormState>();
 
   // Send Reset Password Email
-  sendPasswordResetEmail() async {
+  Future<void> sendPasswordResetEmail() async {
     try {
       // Start Loading
       TFullScreenLoader.openLoadingDialog(
-          'İsteğiniz işleme alınıyor...', ImagePaths.documentProcessingLottie);
+        'İsteğiniz işleme alınıyor...',
+        ImagePaths.documentProcessingLottie,
+      );
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
         // Show connectivity error and return
         TLoaders.errorSnackBar(
-            title: 'Internet yok',
-            message: 'Lütfen internet bağlantınızı kontrol edin.');
+          title: 'Internet yok',
+          message: 'Lütfen internet bağlantınızı kontrol edin.',
+        );
         return;
       }
 
@@ -41,32 +46,36 @@ class ForgetPasswordController extends GetxController {
 
       // Show Success Screen
       TLoaders.successSnackBar(
-          title: 'E-posta Gönderildi',
-          message:
-              'Şifre sıfırlamak için e-posta adresinize bir bağlantı gönderildi!'
-                  .tr);
+        title: 'E-posta Gönderildi',
+        message:
+            'Şifre sıfırlamak için e-posta adresinize bir bağlantı gönderildi!'
+                .tr,
+      );
 
       // Redirect
-      Get.to(() => ResetPasswordScreen(email: email.text.trim()));
+      unawaited(Get.to(() => ResetPasswordScreen(email: email.text.trim())));
     } catch (e) {
       // Show some Generic Error to the user
       TLoaders.errorSnackBar(title: 'Ooops', message: e.toString());
     }
   }
 
-  resendPasswordResetEmail(String email) async {
+  Future<void> resendPasswordResetEmail(String email) async {
     try {
       // Start Loading
       TFullScreenLoader.openLoadingDialog(
-          'İsteğiniz işleme alınıyor...', ImagePaths.documentProcessingLottie);
+        'İsteğiniz işleme alınıyor...',
+        ImagePaths.documentProcessingLottie,
+      );
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
         // Show connectivity error and return
         TLoaders.errorSnackBar(
-            title: 'Internet yok',
-            message: 'Lütfen internet bağlantınızı kontrol edin.');
+          title: 'Internet yok',
+          message: 'Lütfen internet bağlantınızı kontrol edin.',
+        );
         return;
       }
 
@@ -75,9 +84,9 @@ class ForgetPasswordController extends GetxController {
 
       // Show Success Screen
       TLoaders.successSnackBar(
-          title: 'E-posta Gönderildi',
-          message:
-              'Şifrenizi Sıfırlamak için E-posta Bağlantısı Gönderildi.'.tr);
+        title: 'E-posta Gönderildi',
+        message: 'Şifrenizi Sıfırlamak için E-posta Bağlantısı Gönderildi.'.tr,
+      );
     } catch (e) {
       // Show some Generic Error to the user
       TLoaders.errorSnackBar(title: 'Ooops', message: e.toString());

@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:anytime_todo_app/common/constants/app_colors.dart';
 import 'package:anytime_todo_app/common/helpers/device_utilities_extensions.dart';
 import 'package:anytime_todo_app/common/helpers/t_device_utility.dart';
+import 'package:flutter/material.dart';
 
 class TAppBar extends StatelessWidget implements PreferredSizeWidget {
   const TAppBar({
@@ -37,13 +37,17 @@ class TAppBar extends StatelessWidget implements PreferredSizeWidget {
                     leadingOnPressed!();
                   } else {
                     Navigator.pop(
-                        context); // Get.back() yerine Navigator.pop kullanıldı
+                      context,
+                    ); // Get.back() yerine Navigator.pop kullanıldı
                   }
                 },
-                icon: Icon(Icons.arrow_back_ios_new_rounded, color: iconColor))
+                icon: Icon(Icons.arrow_back_ios_new_rounded, color: iconColor),
+              )
             : leadingIcon != null
                 ? IconButton(
-                    onPressed: leadingOnPressed, icon: Icon(leadingIcon))
+                    onPressed: leadingOnPressed,
+                    icon: Icon(leadingIcon),
+                  )
                 : null,
         title: title,
         actions: actions,

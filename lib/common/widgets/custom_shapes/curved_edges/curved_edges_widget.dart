@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class TCurvedEdgeWidget extends StatelessWidget {
   const TCurvedEdgeWidget({
-    super.key,
     required this.child,
+    super.key,
   });
 
   final Widget child;

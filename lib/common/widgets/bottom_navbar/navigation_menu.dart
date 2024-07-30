@@ -26,7 +26,9 @@ class NavigationMenu extends StatelessWidget {
           destinations: const [
             NavigationDestination(icon: Icon(Iconsax.home), label: 'Anasayfa'),
             NavigationDestination(
-                icon: Icon(Iconsax.add_square5), label: 'Ekle'),
+              icon: Icon(Iconsax.add_square5),
+              label: 'Ekle',
+            ),
             NavigationDestination(icon: Icon(Iconsax.user), label: 'Hesabım'),
           ],
         ),
@@ -43,6 +45,6 @@ class NavigationController extends GetxController {
     // Container(color: Colors.green),
     const HomeScreen(),
     Container(color: Colors.purple),
-    Container(color: Colors.orange)
+    Container(color: Colors.orange),
   ];
 }

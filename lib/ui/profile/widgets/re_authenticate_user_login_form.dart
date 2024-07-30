@@ -18,49 +18,52 @@ class ReAuthLoginForm extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: Form(
-              key: controller.reAuthFormKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Email
-                  TextFormField(
-                    controller: controller.verifyEmail,
-                    validator: TValidator.validateEmail,
-                    decoration: const InputDecoration(
-                        prefixIcon: Icon(Iconsax.direct_right),
-                        labelText: TTexts.email),
+            key: controller.reAuthFormKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Email
+                TextFormField(
+                  controller: controller.verifyEmail,
+                  validator: TValidator.validateEmail,
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Iconsax.direct_right),
+                    labelText: TTexts.email,
                   ),
-                  const SizedBox(height: TSizes.spaceBtwInputFields),
+                ),
+                const SizedBox(height: TSizes.spaceBtwInputFields),
 
-                  // Password
-                  Obx(
-                    () => TextFormField(
-                      obscureText: controller.hidePassword.value,
-                      controller: controller.verifyPassword,
-                      validator: (value) => TValidator.validatePassword(value),
-                      decoration: InputDecoration(
-                        labelText: TTexts.password,
-                        prefixIcon: const Icon(Iconsax.password_check),
-                        suffixIcon: IconButton(
-                          onPressed: () => controller.hidePassword.value =
-                              !controller.hidePassword.value,
-                          icon: const Icon(Iconsax.eye_slash),
-                        ),
+                // Password
+                Obx(
+                  () => TextFormField(
+                    obscureText: controller.hidePassword.value,
+                    controller: controller.verifyPassword,
+                    validator: TValidator.validatePassword,
+                    decoration: InputDecoration(
+                      labelText: TTexts.password,
+                      prefixIcon: const Icon(Iconsax.password_check),
+                      suffixIcon: IconButton(
+                        onPressed: () => controller.hidePassword.value =
+                            !controller.hidePassword.value,
+                        icon: const Icon(Iconsax.eye_slash),
                       ),
                     ),
                   ),
-                  const SizedBox(height: TSizes.spaceBtwSections),
+                ),
+                const SizedBox(height: TSizes.spaceBtwSections),
 
-                  // LOGIN BUTTON
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                        onPressed: () =>
-                            controller.reAuthenticateWithEmailAndPasswordUser(),
-                        child: const Text('Doğrula')),
+                // LOGIN BUTTON
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed:
+                        controller.reAuthenticateWithEmailAndPasswordUser,
+                    child: const Text('Doğrula'),
                   ),
-                ],
-              )),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

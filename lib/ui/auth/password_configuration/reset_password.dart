@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:anytime_todo_app/common/constants/image_strings.dart';
 import 'package:anytime_todo_app/common/constants/t_sizes.dart';
 import 'package:anytime_todo_app/common/constants/text_strings.dart';
@@ -12,7 +14,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
-  const ResetPasswordScreen({super.key, required this.email});
+  const ResetPasswordScreen({required this.email, super.key});
 
   final String email;
 
@@ -25,8 +27,9 @@ class ResetPasswordScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-              onPressed: () => Get.back(),
-              icon: const Icon(CupertinoIcons.clear)),
+            onPressed: () => Get.back<void>(),
+            icon: const Icon(CupertinoIcons.clear),
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -37,28 +40,41 @@ class ResetPasswordScreen extends StatelessWidget {
             children: [
               /// Image
               Center(
-                  child: Lottie.asset(ImagePaths.resetPasswordEmailLottie,
-                      width: width * 0.8, height: height * 0.4)),
+                child: Lottie.asset(
+                  ImagePaths.resetPasswordEmailLottie,
+                  width: width * 0.8,
+                  height: height * 0.4,
+                ),
+              ),
               SizedBox(height: height * 0.01),
 
               /// Email, Title & SubTitle
-              Text(email,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                  textAlign: TextAlign.center),
+              Text(
+                email,
+                style: Theme.of(context).textTheme.bodyMedium,
+                textAlign: TextAlign.center,
+              ),
               SizedBox(height: height * 0.02),
-              Text(TTexts.changeYourPasswordTitle,
-                  style: Theme.of(context).textTheme.headlineMedium,
-                  textAlign: TextAlign.left),
+              Text(
+                TTexts.changeYourPasswordTitle,
+                style: Theme.of(context).textTheme.headlineMedium,
+                textAlign: TextAlign.left,
+              ),
               SizedBox(height: height * 0.02),
-              Text(TTexts.changeYourPasswordSubTitle,
-                  style: Theme.of(context).textTheme.labelMedium,
-                  textAlign: TextAlign.left),
+              Text(
+                TTexts.changeYourPasswordSubTitle,
+                style: Theme.of(context).textTheme.labelMedium,
+                textAlign: TextAlign.left,
+              ),
               SizedBox(height: height * 0.04),
 
               /// Buttons
               TElevatedButton(
-                  text: TTexts.done,
-                  onPressed: () => Get.offAll(() => const LoginScreen())),
+                text: TTexts.done,
+                onPressed: () => unawaited(
+                  Get.offAll(() => const LoginScreen()),
+                ),
+              ),
               SizedBox(height: height * 0.02),
               SizedBox(
                 width: double.infinity,

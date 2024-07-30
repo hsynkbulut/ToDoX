@@ -2,12 +2,12 @@ import 'package:anytime_todo_app/common/constants/text_strings.dart';
 import 'package:anytime_todo_app/common/helpers/device_utilities_extensions.dart';
 import 'package:anytime_todo_app/common/widgets/buttons/t_elevated_button.dart';
 import 'package:anytime_todo_app/core/utils/validators/validation.dart';
-import 'package:flutter/material.dart';
 import 'package:anytime_todo_app/core/viewmodels/todo_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddTodoBottomSheet extends StatelessWidget {
-  const AddTodoBottomSheet({super.key, required this.controller});
+  const AddTodoBottomSheet({required this.controller, super.key});
 
   final TodoController controller;
 
