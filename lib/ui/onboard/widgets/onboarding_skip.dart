@@ -13,12 +13,13 @@ class OnBoardingSkip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-        top: TDeviceUtils.getAppBarHeight(),
-        child: TTextButton(
-          text: TTexts.skip,
-          overlayColor: AppColors.info,
-          foregroundColor: AppColors.info,
-          onPressed: () => OnboardingController.instance.skipPage(),
-        ));
+      top: TDeviceUtils.getAppBarHeight(),
+      child: TTextButton(
+        text: TTexts.skip,
+        overlayColor: AppColors.info,
+        foregroundColor: AppColors.info,
+        onPressed: () => OnboardingController.instance.skipPage(),
+      ),
+    );
   }
 }

@@ -11,39 +11,43 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
-  google_fonts: ^6.2.1
-  json_annotation: ^4.9.0
-  json_serializable: ^6.8.0
-  build_runner: ^2.4.11
-  
-  # Utility Packages
-  intl: ^0.19.0
-  lottie: ^3.1.2
-  connectivity_plus: ^6.0.3
-  flutter_native_splash: ^2.4.1
-  smooth_page_indicator: ^1.2.0+3
+
+  # Firebase
+  cloud_firestore: ^5.2.0
+  firebase_auth: ^5.1.2
+  firebase_core: ^3.2.0
 
   # Icons
-  iconsax: ^0.0.8
   cupertino_icons: ^1.0.6
-
+  iconsax: ^0.0.8
+  
   # State Management
   get: ^4.6.6
   get_storage: ^2.1.1
 
-  # Firebase
-  firebase_core: ^3.2.0
-  firebase_auth: ^5.1.2
-  cloud_firestore: ^5.1.0
+  # Utility Packages
+  connectivity_plus: ^6.0.3
+  flutter_native_splash: ^2.4.1
+  google_fonts: ^6.2.1
+  intl: ^0.19.0
+  lottie: ^3.1.2
+  smooth_page_indicator: ^1.2.0+3
+
+  # Serialization
+  json_annotation: ^4.9.0
+  json_serializable: ^6.8.0
+
+  # Other
+  build_runner: ^2.4.11
   flutter_slidable: ^3.1.1
 
 # ----------------------- ./ PACKAGES END ----------------------- #
 
 dev_dependencies:
+  flutter_lints: ^3.0.0
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  very_good_analysis: ^6.0.0
 
 #-------------- Native Splash Oluşturma --------------#
 # Terminale şunu yaz: flutter pub run flutter_native_splash:create
@@ -85,4 +89,3 @@ flutter:
     - family: SignikaNegative
       fonts:
         - asset: assets/fonts/SignikaNegative-Medium.ttf
-

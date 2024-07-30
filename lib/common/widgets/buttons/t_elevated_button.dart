@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:anytime_todo_app/common/constants/app_colors.dart';
+import 'package:flutter/material.dart';
 
 class TElevatedButton extends StatelessWidget {
   const TElevatedButton({
+    required this.text,
+    required this.onPressed,
     super.key,
     this.backgroundColor = AppColors.primary,
     this.textColor = AppColors.white,
-    required this.text,
-    required this.onPressed,
   });
 
   final Color? backgroundColor;
@@ -20,14 +20,15 @@ class TElevatedButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: backgroundColor,
-          ),
-          onPressed: onPressed,
-          child: Text(
-            text,
-            style: TextStyle(color: textColor),
-          )),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: backgroundColor,
+        ),
+        onPressed: onPressed,
+        child: Text(
+          text,
+          style: TextStyle(color: textColor),
+        ),
+      ),
     );
   }
 }

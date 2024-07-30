@@ -4,13 +4,16 @@ import 'package:anytime_todo_app/common/helpers/device_utilities_extensions.dart
 import 'package:flutter/material.dart';
 
 class OnBoardingPage extends StatelessWidget {
-  const OnBoardingPage(
-      {super.key,
-      required this.image,
-      required this.title,
-      required this.subTitle});
+  const OnBoardingPage({
+    required this.image,
+    required this.title,
+    required this.subTitle,
+    super.key,
+  });
 
-  final String image, title, subTitle;
+  final String image;
+  final String title;
+  final String subTitle;
 
   @override
   Widget build(BuildContext context) {

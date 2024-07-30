@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:anytime_todo_app/common/constants/app_colors.dart';
+import 'package:flutter/material.dart';
 
 class TOutlinedButtonTheme {
   TOutlinedButtonTheme._();
@@ -9,7 +9,8 @@ class TOutlinedButtonTheme {
       elevation: 0,
       foregroundColor: AppColors.primary, // Buton yazı rengi
       side: const BorderSide(
-          color: AppColors.primary), // Buton Kenar kalınlığı rengi, Colors.blue
+        color: AppColors.primary,
+      ), // Buton Kenar kalınlığı rengi
       textStyle: const TextStyle(
         fontFamily: 'SignikaNegative',
         fontSize: 16,
@@ -26,8 +27,8 @@ class TOutlinedButtonTheme {
       foregroundColor: AppColors.primary, // Buton yazı rengi
       //backgroundColor: AppColors.whiteColor, // Buton arkaplan rengi
       side: const BorderSide(
-          color: AppColors
-              .primary), // Buton Kenar kalınlığı rengi, Colors.blueAccent
+        color: AppColors.primary,
+      ), // Buton Kenar kalınlığı rengi, Colors.blueAccent
       textStyle: const TextStyle(
         fontFamily: 'SignikaNegative',
         fontSize: 16,

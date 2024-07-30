@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 class TPrimaryHeaderContainer extends StatelessWidget {
   const TPrimaryHeaderContainer({
-    super.key,
     required this.child,
+    super.key,
     this.containerColor = AppColors.primary,
   });
 
@@ -20,20 +20,22 @@ class TPrimaryHeaderContainer extends StatelessWidget {
       child: Container(
         //height: height * 0.28, //KALDIRILACAK MI?
         color: containerColor,
-        padding: const EdgeInsets.only(bottom: 0),
+        padding: EdgeInsets.zero,
         child: Stack(
           children: [
             Positioned(
               top: -150,
               right: -250,
               child: TCircularContainer(
-                  backgroundColor: AppColors.textWhite.withOpacity(0.1)),
+                backgroundColor: AppColors.textWhite.withOpacity(0.1),
+              ),
             ),
             Positioned(
               top: 100,
               right: -300,
               child: TCircularContainer(
-                  backgroundColor: AppColors.textWhite.withOpacity(0.1)),
+                backgroundColor: AppColors.textWhite.withOpacity(0.1),
+              ),
             ),
             child,
           ],

@@ -30,11 +30,11 @@ class TValidator {
       return 'Şifre en az 8 karakter uzunluğunda olmalıdır.';
     }
 
-    if (!value.contains(RegExp(r'[A-Z]'))) {
+    if (!value.contains(RegExp('[A-Z]'))) {
       return 'Şifre en az bir büyük harf içermelidir.';
     }
 
-    if (!value.contains(RegExp(r'[0-9]'))) {
+    if (!value.contains(RegExp('[0-9]'))) {
       return 'Şifre en az bir sayı içermelidir.';
     }
 

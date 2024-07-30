@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:anytime_todo_app/common/constants/app_colors.dart';
 import 'package:anytime_todo_app/common/helpers/t_device_utility.dart';
 import 'package:anytime_todo_app/common/helpers/theme_utilities_extensions.dart';
+import 'package:flutter/material.dart';
 
 class TTabBar extends StatelessWidget implements PreferredSizeWidget {
-  const TTabBar({super.key, required this.tabs});
+  const TTabBar({required this.tabs, super.key});
 
   final List<Widget> tabs;
 

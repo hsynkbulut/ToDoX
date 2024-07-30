@@ -4,7 +4,11 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class TLoaders {
-  static successSnackBar({required title, message = '', duration = 3}) {
+  static dynamic successSnackBar({
+    required String title,
+    String message = '',
+    int duration = 3,
+  }) {
     Get.snackbar(
       title,
       message,
@@ -19,7 +23,7 @@ class TLoaders {
     );
   }
 
-  static warningSnackBar({required title, message = ''}) {
+  static dynamic warningSnackBar({required String title, String message = ''}) {
     Get.snackbar(
       title,
       message,
@@ -28,13 +32,12 @@ class TLoaders {
       colorText: AppColors.white,
       backgroundColor: AppColors.warning,
       snackPosition: SnackPosition.BOTTOM,
-      duration: const Duration(seconds: 3),
       margin: const EdgeInsets.all(20),
       icon: const Icon(Iconsax.warning_2, color: AppColors.white),
     );
   }
 
-  static errorSnackBar({required title, message = ''}) {
+  static dynamic errorSnackBar({required String title, String message = ''}) {
     Get.snackbar(
       title,
       message,
@@ -43,7 +46,6 @@ class TLoaders {
       colorText: AppColors.white,
       backgroundColor: AppColors.error,
       snackPosition: SnackPosition.BOTTOM,
-      duration: const Duration(seconds: 3),
       margin: const EdgeInsets.all(20),
       icon: const Icon(Iconsax.warning_2, color: AppColors.white),
     );

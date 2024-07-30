@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:anytime_todo_app/ui/auth/login/login_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -12,12 +13,13 @@ class OnboardingController extends GetxController {
   Rx<int> currentPageIndex = 0.obs;
 
   // Update Current Index when Page Scroll
-  void updatePageIndicator(index) => currentPageIndex.value = index;
+  // ignore: use_setters_to_change_properties
+  void updatePageIndicator(int index) => currentPageIndex.value = index;
 
   // Jump to the spesific dot selected page.
-  void dotNavigationClick(index) {
+  void dotNavigationClick(int index) {
     currentPageIndex.value = index;
-    pageController.jumpTo(index);
+    pageController.jumpTo(index as double);
   }
 
   // Update Current Index & jump to next page
@@ -27,7 +29,8 @@ class OnboardingController extends GetxController {
 
       if (kDebugMode) {
         print(
-            '=================== GET STORAGE Next Button ===================');
+          '=================== GET STORAGE Next Button ===================',
+        );
         print(storage.read('IsFirstTime'));
       }
 
@@ -35,13 +38,14 @@ class OnboardingController extends GetxController {
 
       if (kDebugMode) {
         print(
-            '=================== GET STORAGE Next Button ===================');
+          '=================== GET STORAGE Next Button ===================',
+        );
         print(storage.read('IsFirstTime'));
       }
 
-      Get.offAll(const LoginScreen());
+      unawaited(Get.offAll(const LoginScreen()));
     } else {
-      int page = currentPageIndex.value + 1;
+      final page = currentPageIndex.value + 1;
       pageController.jumpToPage(page);
     }
   }

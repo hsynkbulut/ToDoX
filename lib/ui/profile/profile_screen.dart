@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:anytime_todo_app/common/constants/app_colors.dart';
+import 'package:anytime_todo_app/common/constants/t_sizes.dart';
 import 'package:anytime_todo_app/common/constants/text_strings.dart';
 import 'package:anytime_todo_app/common/widgets/appbar/appbar.dart';
 import 'package:anytime_todo_app/common/widgets/buttons/t_elevated_button.dart';
@@ -11,7 +14,6 @@ import 'package:anytime_todo_app/ui/edit_profile/edit_profile_screen.dart';
 import 'package:anytime_todo_app/ui/profile/widgets/profile_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../common/constants/t_sizes.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -49,25 +51,30 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   /// Heading Profile Info
                   const TSectionHeading(
-                      title: 'Profil Bilgileri', showActionButton: false),
+                    title: 'Profil Bilgileri',
+                    showActionButton: false,
+                  ),
                   const SizedBox(height: TSizes.spaceBtwItems / 2),
                   const Divider(),
                   const SizedBox(height: TSizes.spaceBtwItems),
 
                   TProfileMenu(
-                      title: TTexts.firstName,
-                      value: controller.user.value.firstName,
-                      onPressed: () {}),
+                    title: TTexts.firstName,
+                    value: controller.user.value.firstName,
+                    onPressed: () {},
+                  ),
 
                   TProfileMenu(
-                      title: TTexts.lastName,
-                      value: controller.user.value.lastName,
-                      onPressed: () {}),
+                    title: TTexts.lastName,
+                    value: controller.user.value.lastName,
+                    onPressed: () {},
+                  ),
 
                   TProfileMenu(
-                      title: TTexts.email,
-                      value: controller.user.value.email,
-                      onPressed: () {}),
+                    title: TTexts.email,
+                    value: controller.user.value.email,
+                    onPressed: () {},
+                  ),
 
                   const SizedBox(height: TSizes.spaceBtwItems),
                   const Divider(),
@@ -76,8 +83,11 @@ class ProfileScreen extends StatelessWidget {
                   /// Account Edit Button
                   TElevatedButton(
                     text: TTexts.updateAccountButton,
-                    onPressed: () => Get.to(
-                        () => EditProfileScreen(user: controller.user.value)),
+                    onPressed: () => unawaited(
+                      Get.to(
+                        () => EditProfileScreen(user: controller.user.value),
+                      ),
+                    ),
                   ),
                   const SizedBox(height: TSizes.defaultSpace),
 
@@ -97,7 +107,7 @@ class ProfileScreen extends StatelessWidget {
                     foregroundColor: AppColors.error,
                     borderSideColor: AppColors.error,
                     textColor: AppColors.error,
-                    onPressed: () => controller.deleteAccountWarningPopup(),
+                    onPressed: controller.deleteAccountWarningPopup,
                   ),
                   const SizedBox(height: TSizes.defaultSpace),
                 ],

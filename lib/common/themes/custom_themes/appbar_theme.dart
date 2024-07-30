@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:anytime_todo_app/common/constants/app_colors.dart';
 import 'package:anytime_todo_app/common/constants/t_sizes.dart';
+import 'package:flutter/material.dart';
 
 class TAppBarTheme {
   TAppBarTheme._();
@@ -15,7 +15,7 @@ class TAppBarTheme {
     actionsIconTheme:
         IconThemeData(color: AppColors.black, size: TSizes.iconMd),
     titleTextStyle: TextStyle(
-      fontSize: 18.0,
+      fontSize: 18,
       fontWeight: FontWeight.w600,
       color: AppColors.black, //AppColors.primaryColor,
     ),
@@ -31,7 +31,7 @@ class TAppBarTheme {
     actionsIconTheme:
         IconThemeData(color: AppColors.white, size: TSizes.iconMd),
     titleTextStyle: TextStyle(
-      fontSize: 18.0,
+      fontSize: 18,
       fontWeight: FontWeight.w600,
       color: AppColors.white,
     ),

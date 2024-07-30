@@ -1,4 +1,5 @@
 import 'package:anytime_todo_app/common/constants/app_colors.dart';
+import 'package:anytime_todo_app/common/constants/t_sizes.dart';
 import 'package:anytime_todo_app/common/constants/text_strings.dart';
 import 'package:anytime_todo_app/common/widgets/appbar/appbar.dart';
 import 'package:anytime_todo_app/common/widgets/buttons/t_elevated_button.dart';
@@ -9,16 +10,14 @@ import 'package:anytime_todo_app/core/utils/validators/validation.dart';
 import 'package:anytime_todo_app/core/viewmodels/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import '../../../../common/constants/t_sizes.dart';
 
 class EditProfileScreen extends StatelessWidget {
-  const EditProfileScreen({super.key, required this.user});
+  const EditProfileScreen({required this.user, super.key});
   final UserModel user;
 
   @override
   Widget build(BuildContext context) {
-    final controller = UserController.instance;
-    controller.initUpdateControllers(user);
+    final controller = UserController.instance..initUpdateControllers(user);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -49,53 +48,56 @@ class EditProfileScreen extends StatelessWidget {
                 children: [
                   /// Heading Personal Info
                   const TSectionHeading(
-                      title: 'Kişisel Bilgiler', showActionButton: false),
+                    title: 'Kişisel Bilgiler',
+                    showActionButton: false,
+                  ),
                   const SizedBox(height: TSizes.spaceBtwItems),
                   const Divider(),
                   const SizedBox(height: TSizes.spaceBtwItems),
 
                   /// Edit Form
                   Form(
-                      key: controller.editFormKey,
-                      child: Column(
-                        children: [
-                          /// FirstName
-                          TextFormField(
-                            validator: (value) =>
-                                TValidator.validateEmptyText('İsim', value),
-                            controller: controller.updateFirstName,
-                            expands: false,
-                            decoration: const InputDecoration(
-                                counter: SizedBox.shrink(), //maxLength hidden
-                                labelText: TTexts.firstName,
-                                prefixIcon: Icon(Iconsax.user)),
-                            keyboardType: TextInputType.name,
-                            maxLength: 20,
+                    key: controller.editFormKey,
+                    child: Column(
+                      children: [
+                        /// FirstName
+                        TextFormField(
+                          validator: (value) =>
+                              TValidator.validateEmptyText('İsim', value),
+                          controller: controller.updateFirstName,
+                          decoration: const InputDecoration(
+                            counter: SizedBox.shrink(), //maxLength hidden
+                            labelText: TTexts.firstName,
+                            prefixIcon: Icon(Iconsax.user),
                           ),
-                          const SizedBox(height: TSizes.spaceBtwItems),
+                          keyboardType: TextInputType.name,
+                          maxLength: 20,
+                        ),
+                        const SizedBox(height: TSizes.spaceBtwItems),
 
-                          /// LastName
-                          TextFormField(
-                            validator: (value) =>
-                                TValidator.validateEmptyText('Soyisim', value),
-                            controller: controller.updateLastName,
-                            expands: false,
-                            decoration: const InputDecoration(
-                                counter: SizedBox.shrink(), //maxLength hidden
-                                labelText: TTexts.lastName,
-                                prefixIcon: Icon(Iconsax.user)),
-                            keyboardType: TextInputType.text,
-                            maxLength: 20,
+                        /// LastName
+                        TextFormField(
+                          validator: (value) =>
+                              TValidator.validateEmptyText('Soyisim', value),
+                          controller: controller.updateLastName,
+                          decoration: const InputDecoration(
+                            counter: SizedBox.shrink(), //maxLength hidden
+                            labelText: TTexts.lastName,
+                            prefixIcon: Icon(Iconsax.user),
                           ),
-                          const SizedBox(height: TSizes.spaceBtwItems),
+                          keyboardType: TextInputType.text,
+                          maxLength: 20,
+                        ),
+                        const SizedBox(height: TSizes.spaceBtwItems),
 
-                          /// Account Edit Button
-                          TElevatedButton(
-                              text: TTexts.updateButton,
-                              onPressed: () =>
-                                  controller.updateUserDetails(user)),
-                        ],
-                      )),
+                        /// Account Edit Button
+                        TElevatedButton(
+                          text: TTexts.updateButton,
+                          onPressed: () => controller.updateUserDetails(user),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

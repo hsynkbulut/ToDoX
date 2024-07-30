@@ -30,15 +30,18 @@ class LoginController extends GetxController {
     try {
       // Start Loading
       TFullScreenLoader.openLoadingDialog(
-          'Giriş yapıyorsun...', ImagePaths.documentProcessingLottie);
+        'Giriş yapıyorsun...',
+        ImagePaths.documentProcessingLottie,
+      );
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
         // Show connectivity error and return
         TLoaders.errorSnackBar(
-            title: 'Internet yok',
-            message: 'Lütfen internet bağlantınızı kontrol edin.');
+          title: 'Internet yok',
+          message: 'Lütfen internet bağlantınızı kontrol edin.',
+        );
         return;
       }
 
@@ -49,16 +52,16 @@ class LoginController extends GetxController {
 
       // Save Data if Remember me is selected
       if (rememberMe.value) {
-        localStorage.write('REMEMBER_ME_EMAIL', email.text.trim());
-        localStorage.write('REMEMBER_ME_PASSWORD', password.text.trim());
+        await localStorage.write('REMEMBER_ME_EMAIL', email.text.trim());
+        await localStorage.write('REMEMBER_ME_PASSWORD', password.text.trim());
       }
 
       // Login user using Email & Password Authentication
-      final userCredentials = await AuthenticationRepository.instance
+      await AuthenticationRepository.instance
           .loginWithEmailPassword(email.text.trim(), password.text.trim());
 
       // Redirect
-      AuthenticationRepository.instance.screenRedirect();
+      await AuthenticationRepository.instance.screenRedirect();
     } catch (e) {
       // Show some Generic Error to the user
       TLoaders.errorSnackBar(title: 'Ooops', message: e.toString());

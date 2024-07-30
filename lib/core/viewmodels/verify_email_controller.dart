@@ -20,31 +20,35 @@ class VerifyEmailController extends GetxController {
   }
 
   // Send email verification link
-  sendEmailVerification() async {
+  dynamic sendEmailVerification() async {
     try {
       await AuthenticationRepository.instance.sendEmailVerification();
       TLoaders.successSnackBar(
-          title: 'E-posta Gönderildi',
-          message:
-              'Lütfen gelen kutunuzu kontrol edin ve e-postanızı doğrulayın.');
+        title: 'E-posta Gönderildi',
+        message:
+            'Lütfen gelen kutunuzu kontrol edin ve e-postanızı doğrulayın.',
+      );
     } catch (e) {
       TLoaders.errorSnackBar(title: 'Ooops', message: e.toString());
     }
   }
 
   // Timer to automatically redirect on Email Verification
-  setTimerForAutoRedirect() {
+  dynamic setTimerForAutoRedirect() {
     Timer.periodic(const Duration(seconds: 1), (timer) async {
       await FirebaseAuth.instance.currentUser?.reload();
       final user = FirebaseAuth.instance.currentUser;
       if (user?.emailVerified ?? false) {
         timer.cancel();
-        Get.off(
-          () => SuccessScreen(
-            image: ImagePaths.successLottie,
-            title: TTexts.yourAccountCreatedTitle,
-            subTitle: TTexts.yourAccountCreatedSubTitle,
-            onPressed: () => AuthenticationRepository.instance.screenRedirect(),
+        unawaited(
+          Get.off(
+            () => SuccessScreen(
+              image: ImagePaths.successLottie,
+              title: TTexts.yourAccountCreatedTitle,
+              subTitle: TTexts.yourAccountCreatedSubTitle,
+              onPressed: () =>
+                  AuthenticationRepository.instance.screenRedirect(),
+            ),
           ),
         );
       }
@@ -52,15 +56,17 @@ class VerifyEmailController extends GetxController {
   }
 
   // Manually check if email verified
-  checkEmailVerificationStatus() async {
+  dynamic checkEmailVerificationStatus() async {
     final currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser != null && currentUser.emailVerified) {
-      Get.off(
-        () => SuccessScreen(
-          image: ImagePaths.successLottie,
-          title: TTexts.yourAccountCreatedTitle,
-          subTitle: TTexts.yourAccountCreatedSubTitle,
-          onPressed: () => AuthenticationRepository.instance.screenRedirect(),
+      unawaited(
+        Get.off(
+          () => SuccessScreen(
+            image: ImagePaths.successLottie,
+            title: TTexts.yourAccountCreatedTitle,
+            subTitle: TTexts.yourAccountCreatedSubTitle,
+            onPressed: () => AuthenticationRepository.instance.screenRedirect(),
+          ),
         ),
       );
     }

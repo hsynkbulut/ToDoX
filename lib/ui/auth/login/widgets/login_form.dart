@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:anytime_todo_app/common/constants/t_sizes.dart';
 import 'package:anytime_todo_app/common/constants/text_strings.dart';
 import 'package:anytime_todo_app/common/widgets/buttons/t_elevated_button.dart';
@@ -33,20 +35,21 @@ class _LoginFormState extends State<LoginForm> {
             /// Email
             TextFormField(
               controller: controller.email,
-              validator: (value) => TValidator.validateEmail(value),
+              validator: TValidator.validateEmail,
               keyboardType: TextInputType.emailAddress,
               maxLength: 30,
               decoration: const InputDecoration(
-                  counter: SizedBox.shrink(), //maxLength hidden
-                  prefixIcon: Icon(Iconsax.direct_right),
-                  labelText: TTexts.email),
+                counter: SizedBox.shrink(), //maxLength hidden
+                prefixIcon: Icon(Iconsax.direct_right),
+                labelText: TTexts.email,
+              ),
             ),
             const SizedBox(height: TSizes.spaceBtwInputFields),
 
             /// Password
             Obx(
               () => TextFormField(
-                validator: (value) => TValidator.validatePassword(value),
+                validator: TValidator.validatePassword,
                 controller: controller.password,
                 obscureText: controller.hidePassword.value,
                 decoration: InputDecoration(
@@ -55,9 +58,11 @@ class _LoginFormState extends State<LoginForm> {
                   suffixIcon: IconButton(
                     onPressed: () => controller.hidePassword.value =
                         !controller.hidePassword.value,
-                    icon: Icon(controller.hidePassword.value
-                        ? Iconsax.eye_slash
-                        : Iconsax.eye),
+                    icon: Icon(
+                      controller.hidePassword.value
+                          ? Iconsax.eye_slash
+                          : Iconsax.eye,
+                    ),
                   ),
                 ),
               ),
@@ -73,9 +78,10 @@ class _LoginFormState extends State<LoginForm> {
                   children: [
                     Obx(
                       () => Checkbox(
-                          value: controller.rememberMe.value,
-                          onChanged: (value) => controller.rememberMe.value =
-                              !controller.rememberMe.value),
+                        value: controller.rememberMe.value,
+                        onChanged: (value) => controller.rememberMe.value =
+                            !controller.rememberMe.value,
+                      ),
                     ),
                     const Text(TTexts.rememberMe),
                   ],
@@ -83,7 +89,9 @@ class _LoginFormState extends State<LoginForm> {
                 // Forget Password
                 TTextButton(
                   text: TTexts.forgetPassword,
-                  onPressed: () => Get.to(() => const ForgetPassword()),
+                  onPressed: () => unawaited(
+                    Get.to(() => const ForgetPassword()),
+                  ),
                 ),
               ],
             ),
@@ -91,14 +99,18 @@ class _LoginFormState extends State<LoginForm> {
 
             /// Sign In Button
             TElevatedButton(
-                text: TTexts.signIn,
-                onPressed: () => controller.emailAndPasswordSignIn()),
+              text: TTexts.signIn,
+              onPressed: controller.emailAndPasswordSignIn,
+            ),
             const SizedBox(height: TSizes.spaceBtwItems),
 
             /// Create Account Button
             TOutlinedButton(
-                text: TTexts.createAccount,
-                onPressed: () => Get.to(() => const SignupScreen())),
+              text: TTexts.createAccount,
+              onPressed: () => unawaited(
+                Get.to(() => const SignupScreen()),
+              ),
+            ),
             const SizedBox(height: TSizes.spaceBtwSections),
           ],
         ),

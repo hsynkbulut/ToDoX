@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:anytime_todo_app/common/constants/app_colors.dart';
 import 'package:anytime_todo_app/common/constants/text_strings.dart';
 import 'package:anytime_todo_app/common/helpers/device_utilities_extensions.dart';
@@ -47,23 +49,29 @@ class _HomeScreenState extends State<HomeScreen>
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(TTexts.appName,
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineMedium!
-                    .apply(color: AppColors.primary)),
+            Text(
+              TTexts.appName,
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineMedium!
+                  .apply(color: AppColors.primary),
+            ),
             SizedBox(height: height * 0.004),
             Row(
               children: [
-                Text(TTexts.welcome,
-                    style: Theme.of(context).textTheme.headlineSmall),
+                Text(
+                  TTexts.welcome,
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
                 SizedBox(width: width * 0.01),
                 Obx(
-                  () => Text(userController.user.value.firstName,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineSmall!
-                          .apply(color: AppColors.primary)),
+                  () => Text(
+                    userController.user.value.firstName,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineSmall!
+                        .apply(color: AppColors.primary),
+                  ),
                 ),
               ],
             ),
@@ -72,17 +80,20 @@ class _HomeScreenState extends State<HomeScreen>
         actions: [
           IconButton(
             style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(
-                    AppColors.primary.withOpacity(0.12))),
+              backgroundColor:
+                  WidgetStateProperty.all(AppColors.primary.withOpacity(0.12)),
+            ),
             color: AppColors.primary,
-            onPressed: () => Get.to(() => const ProfileScreen()),
+            onPressed: () => unawaited(Get.to(() => const ProfileScreen())),
             icon: const Icon(Iconsax.user),
           ),
         ],
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(
-            vertical: height * 0.03, horizontal: width * 0.05),
+          vertical: height * 0.03,
+          horizontal: width * 0.05,
+        ),
         child: Column(
           children: [
             TabBar(
@@ -104,9 +115,7 @@ class _HomeScreenState extends State<HomeScreen>
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
               ),
-              onChanged: (value) {
-                controller.updateSearchQuery(value);
-              },
+              onChanged: controller.updateSearchQuery,
             ),
             SizedBox(height: height * 0.02),
             Expanded(
@@ -133,8 +142,10 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   void _showAddTodoBottomSheet(
-      BuildContext context, TodoController controller) {
-    showModalBottomSheet(
+    BuildContext context,
+    TodoController controller,
+  ) {
+    showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {

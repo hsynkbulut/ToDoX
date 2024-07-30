@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:anytime_todo_app/common/constants/app_colors.dart';
 import 'package:anytime_todo_app/common/constants/t_sizes.dart';
 import 'package:anytime_todo_app/core/models/user/user_model.dart';
@@ -7,6 +9,7 @@ import 'package:anytime_todo_app/core/utils/popups/loaders.dart';
 import 'package:anytime_todo_app/ui/auth/login/login_screen.dart';
 import 'package:anytime_todo_app/ui/profile/widgets/re_authenticate_user_login_form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -38,7 +41,9 @@ class UserController extends GetxController {
       final user = await userRepository.fetchUserDetails();
       this.user(user);
     } catch (e) {
-      print('Kullanıcı kaydı getirilirken hata oluştu: $e');
+      if (kDebugMode) {
+        print('Kullanıcı kaydı getirilirken hata oluştu: $e');
+      }
       user(UserModel.empty());
     }
   }
@@ -65,27 +70,30 @@ class UserController extends GetxController {
       }
     } catch (e) {
       TLoaders.warningSnackBar(
-          title: 'Veri kaydedilmedi',
-          message:
-              'Bilgilerinizi kaydederken bir şeyler yanlış gitti. Verilerinizi Profilinizden yeniden kaydedebilirsiniz.');
+        title: 'Veri kaydedilmedi',
+        message: '''
+Bilgilerinizi kaydederken bir şeyler yanlış gitti. Verilerinizi Profilinizden yeniden kaydedebilirsiniz.''',
+      );
     }
   }
 
   // Delete Account Warning
   void deleteAccountWarningPopup() {
-    Get.defaultDialog(
+    Get.defaultDialog<void>(
       contentPadding: const EdgeInsets.all(TSizes.md),
       title: 'Hesap Sil',
-      middleText:
-          'Hesabınızı kalıcı olarak silmek istediğinizden emin misiniz? Bu işlem geri alınamaz ve tüm verileriniz kalıcı olarak kaldırılır.',
+      middleText: '''
+Hesabınızı kalıcı olarak silmek istediğinizden emin misiniz? Bu işlem geri alınamaz ve tüm verileriniz kalıcı olarak kaldırılır.''',
       confirm: ElevatedButton(
         onPressed: () async => deleteUserAccount(),
         style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.error,
-            side: const BorderSide(color: AppColors.error)),
+          backgroundColor: AppColors.error,
+          side: const BorderSide(color: AppColors.error),
+        ),
         child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: TSizes.lg),
-            child: Text('Sil')),
+          padding: EdgeInsets.symmetric(horizontal: TSizes.lg),
+          child: Text('Sil'),
+        ),
       ),
       cancel: OutlinedButton(
         onPressed: () => Navigator.of(Get.overlayContext!).pop(),
@@ -95,8 +103,8 @@ class UserController extends GetxController {
   }
 
   // Delete User Account
-  void deleteUserAccount() async {
-    Get.to(() => const ReAuthLoginForm());
+  Future<void> deleteUserAccount() async {
+    unawaited(Get.to(() => const ReAuthLoginForm()));
   }
 
   // RE-AUTHENTICATE before deleting
@@ -111,10 +119,12 @@ class UserController extends GetxController {
 
       await AuthenticationRepository.instance
           .reAuthenticateWithEmailAndPassword(
-              verifyEmail.text.trim(), verifyPassword.text.trim());
+        verifyEmail.text.trim(),
+        verifyPassword.text.trim(),
+      );
       await AuthenticationRepository.instance.deleteAccount();
 
-      Get.offAll(() => const LoginScreen());
+      unawaited(Get.offAll(() => const LoginScreen()));
     } catch (e) {
       TLoaders.warningSnackBar(title: 'Ooops', message: e.toString());
     }
@@ -133,7 +143,7 @@ class UserController extends GetxController {
         return;
       }
 
-      // Update todo data in the Firebase Firestore
+      // Update `todo` data in the Firebase Firestore
       final updatedUser = UserModel(
         userId: user.userId,
         firstName: updateFirstName.text.trim(),
@@ -145,11 +155,14 @@ class UserController extends GetxController {
       await userRepository.updateUserDetails(updatedUser);
 
       TLoaders.successSnackBar(
-          title: 'Başarılı', message: 'Kullanıcı bilgileri güncellendi.');
+        title: 'Başarılı',
+        message: 'Kullanıcı bilgileri güncellendi.',
+      );
     } catch (e) {
       TLoaders.errorSnackBar(
-          title: 'Hata',
-          message: 'Kullanıcı bilgileri güncellenirken bir hata oluştu.');
+        title: 'Hata',
+        message: 'Kullanıcı bilgileri güncellenirken bir hata oluştu.',
+      );
     }
   }
 }

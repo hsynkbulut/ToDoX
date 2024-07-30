@@ -21,37 +21,47 @@ class ForgetPassword extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+          onPressed: () => Get.back<void>(),
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: width * 0.06, vertical: height * 0.01),
+            horizontal: width * 0.06,
+            vertical: height * 0.01,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               /// Image
               Center(
-                  child: Lottie.asset(ImagePaths.forgotPasswordLottie,
-                      width: width * 0.9, height: height * 0.45)),
+                child: Lottie.asset(
+                  ImagePaths.forgotPasswordLottie,
+                  width: width * 0.9,
+                  height: height * 0.45,
+                ),
+              ),
               SizedBox(height: height * 0.01),
 
               /// Headings
-              Text(TTexts.forgetPasswordTitle,
-                  style: Theme.of(context).textTheme.headlineMedium),
+              Text(
+                TTexts.forgetPasswordTitle,
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
               SizedBox(height: height * 0.02),
-              Text(TTexts.forgetPasswordSubTitle,
-                  style: Theme.of(context).textTheme.labelMedium),
+              Text(
+                TTexts.forgetPasswordSubTitle,
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
               SizedBox(height: height * 0.04),
 
               Form(
                 key: controller.forgetPasswordFormKey,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                      vertical: TSizes.spaceBtwSections),
+                    vertical: TSizes.spaceBtwSections,
+                  ),
                   child: Column(
                     children: [
                       /// Email
@@ -60,17 +70,19 @@ class ForgetPassword extends StatelessWidget {
                         validator: TValidator.validateEmail,
                         keyboardType: TextInputType.emailAddress,
                         decoration: const InputDecoration(
-                            counter: SizedBox.shrink(), //maxLength hidden
-                            labelText: TTexts.email,
-                            prefixIcon: Icon(Iconsax.direct_right)),
+                          counter: SizedBox.shrink(), //maxLength hidden
+                          labelText: TTexts.email,
+                          prefixIcon: Icon(Iconsax.direct_right),
+                        ),
                         maxLength: 30,
                       ),
                       SizedBox(height: height * 0.02),
 
                       /// Submit Button
                       TElevatedButton(
-                          text: TTexts.submit,
-                          onPressed: () => controller.sendPasswordResetEmail()),
+                        text: TTexts.submit,
+                        onPressed: controller.sendPasswordResetEmail,
+                      ),
                     ],
                   ),
                 ),

@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 class TFullScreenLoader {
   static final darkMode = Get.context!.isDarkMode;
   static void openLoadingDialog(String text, String animation) {
-    showDialog(
+    showDialog<void>(
       context: Get.overlayContext!,
       barrierDismissible:
           false, // The dialog can't be dismissed by tapping outside it
@@ -27,7 +27,7 @@ class TFullScreenLoader {
     );
   }
 
-  static stopLoading() {
+  static dynamic stopLoading() {
     Navigator.of(Get.overlayContext!).pop();
   }
 }

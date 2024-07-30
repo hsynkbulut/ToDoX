@@ -16,10 +16,9 @@ class SignupScreen extends StatelessWidget {
       backgroundColor: dark ? AppColors.black : AppColors.white,
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+          onPressed: () => Get.back<void>(),
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -35,8 +34,10 @@ class SignupScreen extends StatelessWidget {
               const SizedBox(height: TSizes.spaceBtwItems),
 
               /// Title
-              Text(TTexts.signUpTitle,
-                  style: Theme.of(context).textTheme.headlineMedium),
+              Text(
+                TTexts.signUpTitle,
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
               const SizedBox(height: TSizes.spaceBtwSections),
 
               /// Form
